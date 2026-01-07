@@ -18,3 +18,12 @@ export interface OtpRequestBody {
         otp: string
     }
 }
+
+export interface AccessTokenParameter {
+    id: Types.ObjectId,
+    role: string
+}
+
+export interface RefreshTokenParameter {
+    id: Types.ObjectId,
+}

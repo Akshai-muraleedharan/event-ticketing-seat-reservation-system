@@ -4,8 +4,8 @@ import crypto from "crypto"
 import bcryptjs from "bcryptjs"
 import { AppError } from "../../utils/appError";
 import { sendMail } from "../../utils/sendEmail";
-import { generateOtpToken } from "../../utils/generateToken";
-import { OtpRequestBody } from "../../interfaces/index";
+import { generateAccessToken, generateOtpToken, generateRefreshToken } from "../../utils/generateToken";
+import { OtpRequestBody, UserLogin } from "../../interfaces/index";
 
 export class authService {
     static async registerUserService(payload: CreateUserBody) {
@@ -128,8 +128,41 @@ export class authService {
         await findUser.save()
 
 
+
         return
     }
 
+    static async loginService(payload: UserLogin) {
+
+
+        const user = await User.findOne({ email: payload.email, emailverified: true })
+
+        if (!user?.emailverified) {
+            throw new AppError("Email not verified. Please verify OTP.", 400)
+        }
+
+        if (!user) {
+            throw new AppError("User not found", 404)
+        }
+
+        const isPasswordMatch = await bcryptjs.compare(payload.password, user.password)
+
+        if (!isPasswordMatch) {
+            throw new AppError("Invalid creditials", 400)
+        }
+
+        const jwtSignData = { id: user._id, role: "user" }
+
+        const accessToken = generateAccessToken(jwtSignData)
+        const refreshToken = generateRefreshToken({ id: user._id })
+
+        const userObj = user.toObject()
+        const { password: pass, ...rest } = userObj
+
+
+
+
+        return { accessToken, refreshToken, rest }
+    }
 
 }

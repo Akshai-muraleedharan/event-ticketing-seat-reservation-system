@@ -15,3 +15,7 @@ export interface IUser {
 }
 
 
+export interface UserLogin {
+    email: string,
+    password: string
+}

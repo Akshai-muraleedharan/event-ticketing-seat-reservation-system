@@ -1,1 +1,1 @@
-export { createUserShema, otpSchema } from "./userSchema"
+export { createUserShema, otpSchema, loginSchema } from "./userSchema"

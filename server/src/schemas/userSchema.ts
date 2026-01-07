@@ -15,3 +15,10 @@ export const otpSchema = z.object({
         otp: z.string().length(6, "OTP must be exactly 6 digits").regex(/^\d+$/, "OTP must contain only numbers"),
     })
 })
+
+export const loginSchema = z.object({
+    body: z.object({
+        email: z.string().email("Invalid email"),
+        password: z.string().min(6, "Password too short"),
+    })
+})

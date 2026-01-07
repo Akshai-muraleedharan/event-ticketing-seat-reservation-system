@@ -6,7 +6,7 @@ import { OtpRequestBody } from "../../interfaces/common.interface"
 
 export const userRegister = async (req: Request<{}, {}, {}>, res: Response<{}>, next: NextFunction) => {
 
-    const body = res.locals.validated?.body
+    const body = res.locals.validated.body
 
     if (!body) {
         throw new AppError("Invalid request body", 400)
@@ -20,23 +20,53 @@ export const userRegister = async (req: Request<{}, {}, {}>, res: Response<{}>, 
             secure: process.env.NODE_ENV === "production",
             sameSite: "strict",
             maxAge: 5 * 60 * 1000,
-        });
-
-        res.status(201).json({ success: true, message: "otp send to email" })
+        }).status(201).json({ success: true, message: "otp send to email" })
 
     } catch (error) {
         next(error)
     }
 }
 
-export const otpVerification = async (req: Request<{}, {}, {}>, res: Response,) => {
+export const userOtpVerification = async (req: Request<{}, {}, {}>, res: Response,) => {
 
 
-    const payload: OtpRequestBody = { user_id_otp: res.locals.user_id_otp, body: res.locals.validated?.body }
+    const payload: OtpRequestBody = { user_id_otp: res.locals.user_id_otp, body: res.locals.validated.body }
+
+    if (!payload) {
+        throw new AppError("Invalid request body", 400)
+    }
 
     await authService.verifyOtpService(payload)
 
+    res.clearCookie("otp_token", {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        sameSite: "strict",
+    });
 
     res.status(200).json({ success: true, message: "Account verified successfully", })
 
+}
+
+export const userLogin = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const body = res.locals.validated.body
+
+
+
+        const { accessToken, refreshToken, rest } = await authService.loginService(body)
+
+
+        res.cookie("refreshToken", refreshToken, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === "production",
+            sameSite: "strict",
+            maxAge: 7 * 24 * 60 * 60 * 1000,
+        });
+
+
+        res.status(200).json({ success: true, message: "User Login Successfully", data: rest, accessToken: accessToken })
+    } catch (error) {
+        next(error)
+    }
 }
