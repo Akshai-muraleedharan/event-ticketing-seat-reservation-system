@@ -2,12 +2,16 @@ import { getEnvVariable } from "./utils/getEnvVariable"
 import express from "express"
 import type { Express } from "express"
 import { connectDB } from "./config/connectDB"
+import { apiRouter } from "./routes/index"
 
 
 
 const app: Express = express()
 
 // connect db 
+
+app.use("/api", apiRouter)
+
 async function startApp() {
 
     try {
