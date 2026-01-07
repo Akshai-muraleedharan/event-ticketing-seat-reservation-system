@@ -3,14 +3,16 @@ import express from "express"
 import type { Express } from "express"
 import { connectDB } from "./config/connectDB"
 import { apiRouter } from "./routes/index"
+import { errorHandler } from "./middleware/errorHandler"
 
 
 
 const app: Express = express()
 
-// connect db 
+app.use(express.json())
 
 app.use("/api", apiRouter)
+app.use(errorHandler)
 
 async function startApp() {
 

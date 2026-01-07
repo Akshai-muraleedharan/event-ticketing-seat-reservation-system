@@ -1,10 +1,29 @@
 // import User from "../../model/user.model"
 import type { Request, Response, NextFunction } from "express"
+import { AppError } from "../../utils/appError"
 
-export const userRegister = async (req: Request, res: Response, next: NextFunction) => {
+
+export const userRegister = async (req: Request<{}, {}, { userName: string }>,
+    res: Response<{ userName: string }>,
+    next: NextFunction) => {
+
+
     try {
-        res.send("<h1>Hello world</h1>")
+
+        const userName = req.body
+
+
+        const lack = true
+        if (lack === true) {
+            throw new AppError("test", 400)
+        }
+
+        res.send(userName)
+
+
+
+
     } catch (error) {
-        console.log(error)
+        next(error)
     }
 }

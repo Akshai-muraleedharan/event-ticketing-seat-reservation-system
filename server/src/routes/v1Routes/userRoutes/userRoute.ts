@@ -5,4 +5,4 @@ import { userRegister } from "../../../controller/user/index";
 export const userRouter: Router = express.Router();
 
 
-userRouter.get('/', userRegister)
+userRouter.post('/', userRegister)
