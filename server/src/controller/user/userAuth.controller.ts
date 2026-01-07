@@ -1,27 +1,14 @@
 // import User from "../../model/user.model"
 import type { Request, Response, NextFunction } from "express"
-import { AppError } from "../../utils/appError"
+import { CreateUserBody } from "../../types/index"
 
+export const userRegister = async (req: Request<{}, {}, {}>, res: Response<{}>, next: NextFunction) => {
 
-export const userRegister = async (req: Request<{}, {}, { userName: string }>,
-    res: Response<{ userName: string }>,
-    next: NextFunction) => {
-
+    const body: CreateUserBody | undefined = res.locals.validated?.body
 
     try {
 
-        const userName = req.body
-
-
-        const lack = true
-        if (lack === true) {
-            throw new AppError("test", 400)
-        }
-
-        res.send(userName)
-
-
-
+        res.status(201).json({ success: true, message: "user created successfully", data: body })
 
     } catch (error) {
         next(error)

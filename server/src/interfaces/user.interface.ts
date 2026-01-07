@@ -7,7 +7,11 @@ export interface IUser {
     email: string,
     phoneNumber: string,
     roles: UserRole,
-    password: string
+    password: string,
+    profilePic: string,
+    emailverified: Boolean,
+    otp: string,
+    otpExpireAt: Date
 }
 
 

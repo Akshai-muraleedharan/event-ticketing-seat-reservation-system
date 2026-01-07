@@ -3,6 +3,7 @@ import { IUser } from "../interfaces/index"
 import { UserRole } from "../enums/index"
 
 
+
 const userSchema = new mongoose.Schema<IUser>({
     userName: {
         type: String,
@@ -13,6 +14,10 @@ const userSchema = new mongoose.Schema<IUser>({
         unique: true,
         required: true
     },
+    emailverified: {
+        type: Boolean,
+        default: false
+    },
     phoneNumber: {
         type: String,
         required: true
@@ -21,7 +26,14 @@ const userSchema = new mongoose.Schema<IUser>({
         type: String,
         enum: Object.values(UserRole),
         default: UserRole.USER
-    }
+    },
+    otp: { type: String, default: null },
+    otpExpireAt: { type: Date },
+    profilePic: {
+        type: String,
+        default: ""
+    },
+
 }, { timestamps: true })
 
 userSchema.index({ email: 1, roles: 1 })
