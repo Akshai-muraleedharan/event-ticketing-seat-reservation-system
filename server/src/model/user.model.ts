@@ -22,13 +22,22 @@ const userSchema = new mongoose.Schema<IUser>({
         type: String,
         required: true
     },
+    password: {
+        type: String,
+        required: true
+    },
     roles: {
         type: String,
         enum: Object.values(UserRole),
         default: UserRole.USER
     },
-    otp: { type: String, default: null },
-    otpExpireAt: { type: Date },
+    otp: {
+        type: String,
+        default: null
+    },
+    otpExpireAt: {
+        type: Date
+    },
     profilePic: {
         type: String,
         default: ""
