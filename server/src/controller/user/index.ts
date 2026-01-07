@@ -1,1 +1,1 @@
-export { userRegister } from "./userAuth.controller"
+export { userRegister, testController } from "./userAuth.controller"

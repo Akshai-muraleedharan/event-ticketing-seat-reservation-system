@@ -2,6 +2,7 @@
 import type { Request, Response, NextFunction } from "express"
 import { authService } from "../../services/index"
 import { AppError } from "../../utils/appError"
+import { OtpRequestBody } from "../../interfaces/common.interface"
 
 export const userRegister = async (req: Request<{}, {}, {}>, res: Response<{}>, next: NextFunction) => {
 
@@ -14,9 +15,21 @@ export const userRegister = async (req: Request<{}, {}, {}>, res: Response<{}>, 
     try {
         const response = await authService.registerUserService(body)
 
-        res.status(201).json({ success: true, message: "user created successfully", data: response })
+        res.cookie("otp_token", response.otpToken, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === "production",
+            sameSite: "strict",
+            maxAge: 5 * 60 * 1000,
+        });
+
+        res.status(201).json({ success: true, message: "otp send to email" })
 
     } catch (error) {
         next(error)
     }
+}
+
+export const testController = async (req: Request<{}, {}, OtpRequestBody>, res: Response,) => {
+    const { user_id } = res.locals
+
 }

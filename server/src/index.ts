@@ -1,6 +1,7 @@
 import { getEnvVariable } from "./utils/getEnvVariable"
 import express from "express"
 import type { Express } from "express"
+import cookieParser from "cookie-parser"
 import { connectDB } from "./config/connectDB"
 import { apiRouter } from "./routes/index"
 import { errorHandler } from "./middleware/errorHandler"
@@ -10,6 +11,7 @@ import { errorHandler } from "./middleware/errorHandler"
 const app: Express = express()
 
 app.use(express.json())
+app.use(cookieParser())
 
 app.use("/api", apiRouter)
 app.use(errorHandler)
