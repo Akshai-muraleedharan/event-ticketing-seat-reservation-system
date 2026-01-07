@@ -13,5 +13,8 @@ export interface OtpToken {
 }
 
 export interface OtpRequestBody {
-    user_id: Types.ObjectId
+    user_id_otp: Types.ObjectId,
+    body: {
+        otp: string
+    }
 }

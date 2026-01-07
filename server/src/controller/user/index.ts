@@ -1,1 +1,1 @@
-export { userRegister, testController } from "./userAuth.controller"
+export { userRegister, otpVerification } from "./userAuth.controller"

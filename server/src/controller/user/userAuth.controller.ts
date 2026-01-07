@@ -29,7 +29,14 @@ export const userRegister = async (req: Request<{}, {}, {}>, res: Response<{}>, 
     }
 }
 
-export const testController = async (req: Request<{}, {}, OtpRequestBody>, res: Response,) => {
-    const { user_id } = res.locals
+export const otpVerification = async (req: Request<{}, {}, {}>, res: Response,) => {
+
+
+    const payload: OtpRequestBody = { user_id_otp: res.locals.user_id_otp, body: res.locals.validated?.body }
+
+    await authService.verifyOtpService(payload)
+
+
+    res.status(200).json({ success: true, message: "Account verified successfully", })
 
 }

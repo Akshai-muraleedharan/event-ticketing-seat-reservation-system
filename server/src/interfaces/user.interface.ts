@@ -10,8 +10,8 @@ export interface IUser {
     password: string,
     profilePic: string,
     emailverified: Boolean,
-    otp: string,
-    otpExpireAt: Date
+    otp?: string,
+    otpExpireAt?: Date
 }
 
 

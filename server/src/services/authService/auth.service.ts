@@ -5,6 +5,7 @@ import bcryptjs from "bcryptjs"
 import { AppError } from "../../utils/appError";
 import { sendMail } from "../../utils/sendEmail";
 import { generateOtpToken } from "../../utils/generateToken";
+import { OtpRequestBody } from "../../interfaces/index";
 
 export class authService {
     static async registerUserService(payload: CreateUserBody) {
@@ -98,7 +99,37 @@ export class authService {
 
     }
 
+    static async verifyOtpService(payload: OtpRequestBody) {
 
+
+
+        const findUser = await User.findById(payload.user_id_otp)
+
+        if (!findUser || !findUser.otp) {
+            throw new AppError("OTP expired", 400)
+        }
+
+        const expireAt = findUser.otpExpireAt;
+
+        if (!findUser.otp || !expireAt || expireAt < new Date()) {
+            throw new AppError("Invalid otp", 400);
+        }
+
+        const isOtpMatch = await bcryptjs.compare(payload.body.otp, findUser?.otp)
+
+        if (!isOtpMatch) {
+            throw new AppError("Invalid otp", 400)
+        }
+
+        findUser.emailverified = true
+        findUser.otp = undefined
+        findUser.otpExpireAt = undefined
+
+        await findUser.save()
+
+
+        return
+    }
 
 
 }

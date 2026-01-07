@@ -9,3 +9,9 @@ export const createUserShema = z.object({
         phoneNumber: z.string().trim().regex(/^[6-9]\d{9}$/, "Invalid Indian mobile number"),
     })
 })
+
+export const otpSchema = z.object({
+    body: z.object({
+        otp: z.string().length(6, "OTP must be exactly 6 digits").regex(/^\d+$/, "OTP must contain only numbers"),
+    })
+})

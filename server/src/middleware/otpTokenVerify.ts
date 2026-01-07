@@ -14,13 +14,13 @@ export const verifyOtpToken = async (req: Request, res: Response, next: NextFunc
         const { otp_token } = req.cookies;
 
         if (!otp_token) {
-            throw new AppError("Invalid token", 400)
+            throw new AppError("token expire", 400)
         }
 
         const decode = jwt.verify(otp_token, otpSecret as Secret) as JwtPayload & {
             id: string
         }
-        res.locals.user_id = new Types.ObjectId(decode.id)
+        res.locals.user_id_otp = new Types.ObjectId(decode.id)
 
         next()
     } catch (error: any) {
