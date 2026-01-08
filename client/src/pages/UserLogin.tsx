@@ -1,7 +1,9 @@
-import React from 'react'
+import { FeatureLoginUser } from '../features/auth/user/components/FeatureLoginUser'
 
 export const UserLogin = () => {
     return (
-        <div>UserLogin</div>
+        <div>
+            <FeatureLoginUser />
+        </div>
     )
 }
