@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom"
 import { RootLayout } from "../layouts/RootLayout"
-import { RootPage } from "../pages/index"
+import { RootPage, UserLogin } from "../pages/index"
 
 export const AppRoute = () => {
     return (
@@ -8,6 +8,10 @@ export const AppRoute = () => {
         <Routes>
             <Route element={<RootLayout />} >
                 <Route path="/" element={<RootPage />} />
+                <Route path="user">
+                    <Route path="login" element={<UserLogin />} />
+                </Route>
+
             </Route >
         </Routes>
     )
