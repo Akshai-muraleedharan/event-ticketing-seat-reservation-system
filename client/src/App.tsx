@@ -1,8 +1,11 @@
 import "./App.css"
-import { RootPage } from "./pages/index"
+import { BrowserRouter } from "react-router-dom"
+import { AppRoute } from "./routes/Routes"
 
 export const App = () => {
   return (
-    <RootPage />
+    <BrowserRouter>
+      <AppRoute />
+    </BrowserRouter>
   )
 }
