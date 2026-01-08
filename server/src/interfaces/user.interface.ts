@@ -15,7 +15,7 @@ export interface IUser {
 }
 
 
-export interface UserLogin {
+export interface UserPayload {
     email: string,
     password: string
 }

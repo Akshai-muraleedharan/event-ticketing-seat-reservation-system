@@ -1,6 +1,6 @@
 import jwt, { Secret } from "jsonwebtoken"
 import { getEnvVariable } from "./getEnvVariable"
-import { AccessTokenParameter, OtpToken, RefreshTokenParameter } from "../interfaces/index"
+import { AccessTokenPayload, OtpToken, RefreshTokenPayload } from "../interfaces/index"
 
 
 export const generateOtpToken = (payload: OtpToken): string => {
@@ -12,7 +12,7 @@ export const generateOtpToken = (payload: OtpToken): string => {
 }
 
 
-export const generateAccessToken = (payload: AccessTokenParameter) => {
+export const generateAccessToken = (payload: AccessTokenPayload) => {
 
     const accessTokenSecret = getEnvVariable("ACCESS_TOKEN_SECRET")
 
@@ -21,7 +21,7 @@ export const generateAccessToken = (payload: AccessTokenParameter) => {
     return accessToken
 }
 
-export const generateRefreshToken = (payload: RefreshTokenParameter) => {
+export const generateRefreshToken = (payload: RefreshTokenPayload) => {
     const refreshTokenSecret = getEnvVariable("REFRESH_TOKEN_SECRET")
 
     const refreshToken = jwt.sign({ id: payload.id }, refreshTokenSecret as Secret, { expiresIn: "15d" })

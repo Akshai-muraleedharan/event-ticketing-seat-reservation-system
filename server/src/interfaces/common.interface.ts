@@ -19,11 +19,11 @@ export interface OtpRequestBody {
     }
 }
 
-export interface AccessTokenParameter {
+export interface AccessTokenPayload {
     id: Types.ObjectId,
     role: string
 }
 
-export interface RefreshTokenParameter {
+export interface RefreshTokenPayload {
     id: Types.ObjectId,
 }

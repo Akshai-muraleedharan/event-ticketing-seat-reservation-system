@@ -5,7 +5,7 @@ import bcryptjs from "bcryptjs"
 import { AppError } from "../../utils/appError";
 import { sendMail } from "../../utils/sendEmail";
 import { generateAccessToken, generateOtpToken, generateRefreshToken } from "../../utils/generateToken";
-import { OtpRequestBody, UserLogin } from "../../interfaces/index";
+import { OtpRequestBody, UserPayload } from "../../interfaces/index";
 
 export class authService {
     static async registerUserService(payload: CreateUserBody) {
@@ -132,10 +132,10 @@ export class authService {
         return
     }
 
-    static async loginService(payload: UserLogin) {
+    static async loginService(payload: UserPayload) {
 
 
-        const user = await User.findOne({ email: payload.email, emailverified: true })
+        const user = await User.findOne({ email: payload.email })
 
         if (!user?.emailverified) {
             throw new AppError("Email not verified. Please verify OTP.", 400)
