@@ -5,11 +5,18 @@ import cookieParser from "cookie-parser"
 import { connectDB } from "./config/connectDB"
 import { apiRouter } from "./routes/index"
 import { errorHandler } from "./middleware/errorHandler"
-
+import cors from "cors"
 
 
 const app: Express = express()
 
+const corsOption = {
+    origin: getEnvVariable("FRONTEND_URL"),
+    credentials: true,
+}
+
+
+app.use(cors(corsOption))
 app.use(express.json())
 app.use(cookieParser())
 

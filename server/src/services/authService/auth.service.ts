@@ -25,7 +25,7 @@ export class authService {
         const otpExpiresAt = new Date(Date.now() + 5 * 60 * 1000);
         if (!user) {
             user = new User({
-                userName: payload.userName,
+                fullName: payload.fullName,
                 email: payload.email,
                 phoneNumber: payload.phoneNumber,
                 password: hashedPassword,
@@ -136,6 +136,10 @@ export class authService {
 
 
         const user = await User.findOne({ email: payload.email })
+
+        if (!user) {
+            throw new AppError("User Account not found", 404)
+        }
 
         if (!user?.emailverified) {
             throw new AppError("Email not verified. Please verify OTP.", 400)

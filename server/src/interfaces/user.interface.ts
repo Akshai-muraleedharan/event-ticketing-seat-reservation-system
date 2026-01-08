@@ -3,7 +3,7 @@ import { UserRole } from "../enums/user-role.enum"
 
 
 export interface IUser {
-    userName: string,
+    fullName: string,
     email: string,
     phoneNumber: string,
     roles: UserRole,

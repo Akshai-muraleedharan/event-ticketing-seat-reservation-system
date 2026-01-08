@@ -1,12 +1,23 @@
 import { AuthFeature } from "../../../../components/shared/AuthFeature"
+import { AuthSplitLayout } from "../../components/AuthSplitLayout"
 import { LoginForm } from "./LoginForm"
 
 
 export const FeatureLoginUser = () => {
     return (
-        <div className="min-h-screen justify-center items-center  grid grid-cols-1 lg:grid-cols-2">
-            <AuthFeature />
+        <AuthSplitLayout
+            title="Welcome Back to EventFlow"
+            subTitle="  Discover events, book tickets, and never miss out."
+            features={[
+                "Book tickets in seconds",
+                "Personalized event recommendations",
+                "Secure and seamless login"
+            ]}
+        >
             <LoginForm />
-        </div>
+        </AuthSplitLayout>
+
+
+
     )
 }

@@ -1,4 +1,5 @@
-import { FeatureLoginUser } from '../features/auth/user/components/FeatureLoginUser'
+import { FeatureLoginUser } from "../features/index"
+
 
 export const UserLogin = () => {
     return (

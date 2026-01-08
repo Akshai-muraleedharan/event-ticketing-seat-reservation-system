@@ -11,7 +11,9 @@ export const zodValidationMiddleware = (schema: z.ZodType<zodRequestSchema>): Re
             query: req.query
         })
 
+
         if (!result.success) {
+
             res.status(400).json({ success: false, errors: result.error.flatten().fieldErrors })
             return
         }

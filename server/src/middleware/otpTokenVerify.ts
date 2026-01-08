@@ -14,7 +14,7 @@ export const verifyOtpToken = async (req: Request, res: Response, next: NextFunc
         const { otp_token } = req.cookies;
 
         if (!otp_token) {
-            throw new AppError("token expire", 400)
+            throw new AppError("Otp expired", 400)
         }
 
         const decode = jwt.verify(otp_token, otpSecret as Secret) as JwtPayload & {

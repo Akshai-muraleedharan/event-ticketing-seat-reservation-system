@@ -5,7 +5,7 @@ import { UserRole } from "../enums/index"
 
 
 const userSchema = new mongoose.Schema<IUser>({
-    userName: {
+    fullName: {
         type: String,
         required: true
     },

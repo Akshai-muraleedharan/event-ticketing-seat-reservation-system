@@ -3,10 +3,10 @@ import { z } from "zod"
 
 export const createUserShema = z.object({
     body: z.object({
-        userName: z.string().min(3, "Username must be at least 3 characters"),
-        email: z.string().email("Invalid email"),
-        password: z.string().min(6, "Password too short"),
-        phoneNumber: z.string().trim().regex(/^[6-9]\d{9}$/, "Invalid Indian mobile number"),
+        fullName: z.string().trim().min(1, "User name is required").min(3, "Username must be at least 3 characters"),
+        email: z.string().min(1, "Email is required").email("Invalid email"),
+        password: z.string().min(1, "Password is required").min(6, "Password too short"),
+        phoneNumber: z.string().min(1, "Mobile Number is required").trim().regex(/^[6-9]\d{9}$/, "Invalid Indian mobile number"),
     })
 })
 
@@ -18,7 +18,7 @@ export const otpSchema = z.object({
 
 export const loginSchema = z.object({
     body: z.object({
-        email: z.string().email("Invalid email"),
-        password: z.string().min(6, "Password too short"),
+        email: z.string().trim().min(1, "Email is required").email("Invalid email"),
+        password: z.string().trim().min(1, "Password is required").min(6, "Password too short"),
     })
 })
