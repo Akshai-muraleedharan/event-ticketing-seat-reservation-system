@@ -2,7 +2,7 @@ import React from "react"
 import type { HeroProps } from "./Hero.Types"
 import { Link } from "react-router-dom"
 
-export const HeroContent: React.FC<HeroProps> = ({ title, subTitle, bookButton, eventButton }) => {
+export const HeroContent: React.FC<HeroProps> = ({ title, subTitle, primaryAction, secondaryAction }) => {
     return (
         <div className="hero bg-base-200 min-h-screen">
             <div className="hero-content text-center">
@@ -12,8 +12,8 @@ export const HeroContent: React.FC<HeroProps> = ({ title, subTitle, bookButton, 
                         {subTitle}
                     </p>
                     <div className="flex gap-4 justify-center items-center">
-                        <Link to={eventButton} className="btn btn-primary font-poppins font-semibold">Create Event</Link>
-                        <Link to={bookButton} className="btn btn-secondary font-poppins font-semibold">Book Ticket</Link>
+                        <Link to={`${secondaryAction.to}`} className="btn btn-primary font-poppins font-semibold">{secondaryAction.label}</Link>
+                        <Link to={`${primaryAction.to}`} className="btn btn-secondary font-poppins font-semibold">{primaryAction.label}</Link>
                     </div>
                 </div>
             </div>

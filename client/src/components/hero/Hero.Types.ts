@@ -3,6 +3,12 @@
 export type HeroProps = {
     title?: string,
     subTitle?: string,
-    eventButton: string,
-    bookButton: string
+    primaryAction: {
+        label: string,
+        to: string
+    },
+    secondaryAction: {
+        label: string,
+        to: string
+    }
 }

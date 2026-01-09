@@ -2,7 +2,7 @@ import { useForm, type SubmitHandler } from "react-hook-form"
 import type { LoginInputs } from "../types/userTypes"
 import { useUserLogin } from "../hooks/useUserLogin"
 import { toast } from "react-toastify"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 export const LoginFormUser = () => {
 
@@ -11,10 +11,16 @@ export const LoginFormUser = () => {
     const { register, handleSubmit, reset } = useForm<LoginInputs>()
     const { login, isLoading } = useUserLogin()
 
+    const navigate = useNavigate()
+
     const onSubmit: SubmitHandler<LoginInputs> = async (data) => {
         try {
-            await login(data)
+            const response = await login(data)
             toast.success("User login successfully")
+
+            if (response?.success) {
+                navigate("", { replace: true })
+            }
             reset()
         } catch (error: any) {
 

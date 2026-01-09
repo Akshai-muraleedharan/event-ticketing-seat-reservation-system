@@ -1,6 +1,7 @@
 import { Routes, Route } from "react-router-dom"
 import { RootLayout } from "../layouts/RootLayout"
-import { OrganizerLogin, OrganizerOtp, OrganizerSignup, RootPage, UserLogin, UserOtp, UserSignup } from "../pages/index"
+import { OrganizerHomePage, OrganizerLogin, OrganizerOtp, OrganizerSignup, RootPage, UserLogin, UserOtp, UserSignup } from "../pages/index"
+import { OrganizerLayout } from "../layouts/OrganizerLayout"
 
 export const AppRoute = () => {
     return (
@@ -18,6 +19,9 @@ export const AppRoute = () => {
                     <Route path="signup" element={<OrganizerSignup />} />
                     <Route path="otp-verify" element={<OrganizerOtp />} />
                 </Route>
+            </Route>
+            <Route path="organizer/home" element={<OrganizerLayout />}>
+                <Route index element={<OrganizerHomePage />} />
             </Route>
         </Routes>
     )

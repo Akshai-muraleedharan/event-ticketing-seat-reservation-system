@@ -2,7 +2,7 @@ import { useForm, type SubmitHandler } from "react-hook-form"
 import type { LoginInputs } from "../types/organizerTypes"
 import { useOrganizerLogin } from "../hooks/useOrganizerLogin"
 import { toast } from "react-toastify"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 export const LoginFormOrganizer = () => {
 
@@ -11,10 +11,15 @@ export const LoginFormOrganizer = () => {
 
     const { login, isLoading } = useOrganizerLogin()
 
+    const navigate = useNavigate()
+
     const onSumbit: SubmitHandler<LoginInputs> = async (data) => {
         try {
-            await login(data)
+            const response = await login(data)
             toast.success("User login successfully")
+            if (response?.success) {
+                navigate("/organizer/home", { replace: true })
+            }
             reset()
         } catch (error: any) {
 
