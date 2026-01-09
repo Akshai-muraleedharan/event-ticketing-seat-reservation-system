@@ -6,7 +6,8 @@ export const FeatureSectionCard = () => {
             <div className='mt-10'>
                 <h3 className='text-xl font-semibold mb-6 font-poppins'>For Users</h3>
                 <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-6'>
-                    <div className="card w-96 bg-base-100 card-sm shadow-sm">
+
+                    <div className="card w-full md:w-80 xl:w-96 bg-base-100 card-sm shadow-sm">
                         <div className="card-body">
                             <h4 className="card-title">Discover Events</h4>
                             <p className="text-sm mt-2"> Explore concerts, conferences, workshops, and more in one place.
@@ -15,7 +16,7 @@ export const FeatureSectionCard = () => {
                         </div>
                     </div>
 
-                    <div className="card w-96 bg-base-100 card-sm shadow-sm">
+                    <div className="card w-full md:w-80 xl:w-96 bg-base-100 card-sm shadow-sm">
                         <div className="card-body">
                             <h4 className="card-title">Book Tickets</h4>
                             <p className="text-sm mt-2">  Secure and seamless ticket booking with instant confirmation.
@@ -24,7 +25,7 @@ export const FeatureSectionCard = () => {
                         </div>
                     </div>
 
-                    <div className="card w-96 bg-base-100 card-sm shadow-sm">
+                    <div className="card w-full md:w-80 xl:w-96 bg-base-100 card-sm shadow-sm">
                         <div className="card-body">
                             <h4 className="card-title">Personalized Feed</h4>
                             <p className="text-sm mt-2"> Get event recommendations based on your interests.
@@ -33,7 +34,7 @@ export const FeatureSectionCard = () => {
                         </div>
                     </div>
 
-                    <div className="card w-96 bg-base-100 card-sm shadow-sm">
+                    <div className="card w-full md:w-80 xl:w-96 bg-base-100 card-sm shadow-sm">
                         <div className="card-body">
                             <h4 className="card-title">Easy Check-in</h4>
                             <p className="text-sm mt-2"> Digital tickets and QR codes for quick entry.
@@ -49,7 +50,7 @@ export const FeatureSectionCard = () => {
             <div className='mt-10'>
                 <h3 className='text-xl font-semibold mb-6 font-poppins'>For Organizers</h3>
                 <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-6'>
-                    <div className="card w-96 bg-base-100 card-sm shadow-sm">
+                    <div className="card w-full md:w-80 xl:w-96 bg-base-100 card-sm shadow-sm">
                         <div className="card-body">
                             <h4 className="card-title">Create Events</h4>
                             <p className="text-sm mt-2"> Launch events in minutes with flexible scheduling and pricing.
@@ -58,7 +59,7 @@ export const FeatureSectionCard = () => {
                         </div>
                     </div>
 
-                    <div className="card w-96 bg-base-100 card-sm shadow-sm">
+                    <div className="card w-full md:w-80 xl:w-96 bg-base-100 card-sm shadow-sm">
                         <div className="card-body">
                             <h4 className="card-title">Event Insights</h4>
                             <p className="text-sm mt-2">Track registrations, revenue, and audience engagement.
@@ -66,7 +67,7 @@ export const FeatureSectionCard = () => {
 
                         </div>
                     </div>
-                    <div className="card w-96 bg-base-100 card-sm shadow-sm">
+                    <div className="card w-full md:w-80 xl:w-96 bg-base-100 card-sm shadow-sm">
                         <div className="card-body">
                             <h4 className="card-title">Ticket Management</h4>
                             <p className="text-sm mt-2">Control ticket types, limits, and sales in real time.

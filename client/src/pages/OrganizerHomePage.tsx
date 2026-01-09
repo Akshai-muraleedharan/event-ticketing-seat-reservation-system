@@ -1,4 +1,6 @@
 import { HeroContent } from "../components/hero/HeroContent"
+import { OrganizerWhyEventFlow } from "../components/organizer/OrganizerWhyEventFlow"
+import { QuickAction } from "../components/quickAction/QuickAction"
 
 
 export const OrganizerHomePage = () => {
@@ -17,6 +19,9 @@ export const OrganizerHomePage = () => {
                 }}
 
             />
+
+            <QuickAction />
+            <OrganizerWhyEventFlow />
         </>
     )
 }
