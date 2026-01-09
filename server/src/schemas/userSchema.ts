@@ -3,7 +3,7 @@ import { z } from "zod"
 
 export const createSchema = z.object({
     body: z.object({
-        fullName: z.string().trim().min(1, "User name is required").min(3, "Username must be at least 3 characters"),
+        fullName: z.string().trim().min(1, "Full name is required").min(3, "Username must be at least 3 characters"),
         email: z.string().min(1, "Email is required").email("Invalid email"),
         password: z.string().min(1, "Password is required").min(6, "Password too short"),
         phoneNumber: z.string().min(1, "Mobile Number is required").trim().regex(/^[6-9]\d{9}$/, "Invalid Indian mobile number"),

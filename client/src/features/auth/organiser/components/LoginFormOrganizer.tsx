@@ -9,7 +9,7 @@ export const LoginFormOrganizer = () => {
 
     const { register, handleSubmit, reset } = useForm<LoginInputs>()
 
-    const { login } = useOrganizerLogin()
+    const { login, isLoading } = useOrganizerLogin()
 
     const onSumbit: SubmitHandler<LoginInputs> = async (data) => {
         try {
@@ -45,7 +45,7 @@ export const LoginFormOrganizer = () => {
                             </p>
                             <a className="link link-hover">Forgot password?</a>
                         </div>
-                        <button className="btn btn-neutral mt-5 disabled:cursor-not-allowed disabled:opacity-50">{"login"}</button>
+                        <button disabled={isLoading} className="btn btn-neutral mt-5 disabled:cursor-not-allowed disabled:opacity-50">{isLoading ? "Logging in..." : "login"}</button>
                     </form>
                 </div>
             </div>

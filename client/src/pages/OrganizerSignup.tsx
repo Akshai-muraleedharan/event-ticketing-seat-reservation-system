@@ -1,7 +1,10 @@
-import React from 'react'
+
+import { FeatureSignupOrganizer } from '../features/index'
 
 export const OrganizerSignup = () => {
     return (
-        <div>OrganizerSignup</div>
+        <div>
+            <FeatureSignupOrganizer />
+        </div>
     )
 }
