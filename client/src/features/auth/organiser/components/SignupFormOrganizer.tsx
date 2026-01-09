@@ -31,8 +31,9 @@ export const SignupFormOrganizer = () => {
     }
 
     return (
-        <div className="card bg-base-100 w-full mx-auto h-[60vh] max-w-sm shrink-0 shadow-2xl">
+        <div className="card bg-base-100 w-full mx-auto h-[65vh] max-w-sm shrink-0 shadow-2xl">
             <div className="card-body flex justify-evenly ">
+                <p className="font-medium">Signin</p>
                 <form onSubmit={handleSubmit(onSubmit)} className="fieldset ">
                     <label className="label">User Name</label>
                     <input type="text" {...register("fullName")} className="input" placeholder="Full Name" />
@@ -49,7 +50,7 @@ export const SignupFormOrganizer = () => {
                     <div className="flex justify-between mt-2">
                         <p>
                             You have an account?{" "}
-                            <Link to={"/organizer/login"} className="text-blue-400 ml-1">
+                            <Link to={"/organizer/login"} className="text-blue-500 ml-1 font-medium tracking-wider">
                                 Login
                             </Link>
                         </p>

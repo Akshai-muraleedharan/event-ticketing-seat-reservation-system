@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom"
 import { RootLayout } from "../layouts/RootLayout"
-import { OrganizerLogin, OrganizerSignup, RootPage, UserLogin, UserOtp, UserSignup } from "../pages/index"
+import { OrganizerLogin, OrganizerOtp, OrganizerSignup, RootPage, UserLogin, UserOtp, UserSignup } from "../pages/index"
 
 export const AppRoute = () => {
     return (
@@ -16,8 +16,9 @@ export const AppRoute = () => {
                 <Route path="organizer">
                     <Route path="login" element={<OrganizerLogin />} />
                     <Route path="signup" element={<OrganizerSignup />} />
+                    <Route path="otp-verify" element={<OrganizerOtp />} />
                 </Route>
-            </Route >
+            </Route>
         </Routes>
     )
 }

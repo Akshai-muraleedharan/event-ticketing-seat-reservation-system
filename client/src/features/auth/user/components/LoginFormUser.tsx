@@ -28,8 +28,9 @@ export const LoginFormUser = () => {
     return (
         <>
 
-            <div className="card bg-base-100 w-full mx-auto h-[40vh] max-w-sm shrink-0 shadow-2xl">
+            <div className="card bg-base-100 w-full mx-auto h-[45vh] max-w-sm shrink-0 shadow-2xl">
                 <div className="card-body flex justify-evenly ">
+                    <p className="font-medium">Login</p>
                     <form onSubmit={handleSubmit(onSubmit)} className="fieldset ">
                         <label className="label">Email</label>
                         <input {...register("email")} type="email" className="input" placeholder="Email" />
@@ -38,7 +39,7 @@ export const LoginFormUser = () => {
                         <div className="flex justify-between mt-2">
                             <p>
                                 Don’t have an account?{" "}
-                                <Link to={"/user/signup"} className="text-blue-400 ml-1">
+                                <Link to={"/user/signup"} className="text-blue-500 ml-1 font-medium tracking-wider">
                                     Sign up
                                 </Link>
                             </p>

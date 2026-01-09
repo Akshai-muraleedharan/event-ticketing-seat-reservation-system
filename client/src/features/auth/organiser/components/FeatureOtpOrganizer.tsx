@@ -1,18 +1,17 @@
-import { useForm, Controller } from "react-hook-form"
-import { OtpUser } from './OtpUser'
-import { useUserOtp } from "../hooks/useUserOtp"
-import { toast } from "react-toastify"
-import { useNavigate } from "react-router-dom"
-import { OtpForm } from "../../components/OtpForm"
+
+import { OtpForm } from '../../components/OtpForm'
+import { Controller, useForm } from 'react-hook-form'
+import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
+import { useOrganizerOtp } from '../hooks/useOrganizerOtp'
 
 type OtpFormValue = {
     otp: string
 }
 
-export const FeatureOtpUser = () => {
+export const FeatureOtpOrganizer = () => {
 
-
-    const { otpVerify } = useUserOtp()
+    const { otpVerify } = useOrganizerOtp()
     const { control, handleSubmit } = useForm<OtpFormValue>({ defaultValues: { otp: "" } })
 
     const navigate = useNavigate()
@@ -21,7 +20,7 @@ export const FeatureOtpUser = () => {
         try {
             await otpVerify(data);
 
-            navigate("/user/login", { replace: true })
+            navigate("/organizer/login", { replace: true })
             toast.success("Account verified successfully")
 
         } catch (error: any) {
@@ -31,7 +30,6 @@ export const FeatureOtpUser = () => {
         }
 
     }
-
     return (
         <div className="flex justify-center  flex-col  text-center ">
             <div className="max-w-xl w-full mx-auto">
