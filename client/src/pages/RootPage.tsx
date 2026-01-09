@@ -9,6 +9,7 @@ export const RootPage = () => {
                 title="Welcome to EventFlow"
                 subTitle="Plan, create, and manage your events effortlessly. Organize conferences, school fests, workshops, and more — all in one place."
                 bookButton="/user/login"
+                eventButton="/organizer/login"
             />
 
             <FeatureSection />

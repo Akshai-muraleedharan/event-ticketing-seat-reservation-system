@@ -3,6 +3,7 @@ import type { Request, Response, NextFunction } from "express"
 import { authService } from "../../services/index"
 import { AppError } from "../../utils/appError"
 import { OtpRequestBody } from "../../interfaces/common.interface"
+import { UserRole } from "../../enums/index"
 
 export const userRegister = async (req: Request<{}, {}, {}>, res: Response<{}>, next: NextFunction) => {
 
@@ -13,7 +14,7 @@ export const userRegister = async (req: Request<{}, {}, {}>, res: Response<{}>, 
     }
 
     try {
-        const response = await authService.registerService(body, "user")
+        const response = await authService.registerService(body, UserRole.USER)
 
         res.cookie("otp_token", response.otpToken, {
             httpOnly: true,
@@ -36,7 +37,7 @@ export const userOtpVerification = async (req: Request<{}, {}, {}>, res: Respons
         throw new AppError("Invalid request body", 400)
     }
 
-    await authService.verifyOtpService(payload)
+    await authService.verifyOtpService(payload, UserRole.USER)
 
     res.clearCookie("otp_token", {
         httpOnly: true,
@@ -54,7 +55,7 @@ export const userLogin = async (req: Request, res: Response, next: NextFunction)
 
 
 
-        const { accessToken, refreshToken, rest } = await authService.loginService(body, "user")
+        const { accessToken, refreshToken, rest } = await authService.loginService(body, UserRole.USER)
 
 
         res.cookie("refreshToken", refreshToken, {

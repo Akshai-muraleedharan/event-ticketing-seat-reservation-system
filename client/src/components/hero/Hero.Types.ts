@@ -3,6 +3,6 @@
 export type HeroProps = {
     title?: string,
     subTitle?: string,
-    eventButton?: string,
+    eventButton: string,
     bookButton: string
 }

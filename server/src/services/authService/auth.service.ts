@@ -14,7 +14,7 @@ export class authService {
 
         let user = await User.findOne({ email: payload.email, roles: role })
 
-        if (user && user?.roles === role) {
+        if (user && user.emailverified && user?.roles === role) {
             throw new AppError("Account Already exist", 409)
         }
 
@@ -102,11 +102,11 @@ export class authService {
 
     }
 
-    static async verifyOtpService(payload: OtpRequestBody) {
+    static async verifyOtpService(payload: OtpRequestBody, role: UserRole) {
 
 
 
-        const findUser = await User.findById(payload.user_id_otp)
+        const findUser = await User.findOne({ _id: payload.user_id_otp, roles: role })
 
         if (!findUser || !findUser.otp) {
             throw new AppError("OTP expired", 400)
@@ -135,22 +135,20 @@ export class authService {
         return
     }
 
-    static async loginService(payload: UserPayload, role: string) {
+    static async loginService(payload: UserPayload, role: UserRole) {
 
 
-        const user = await User.findOne({ email: payload.email })
+        const user = await User.findOne({ email: payload.email, roles: role })
 
         if (!user) {
-            throw new AppError("User Account not found", 404)
+            throw new AppError(" Account not found", 404)
         }
 
         if (!user?.emailverified) {
             throw new AppError("Email not verified. Please verify OTP.", 400)
         }
 
-        if (!user) {
-            throw new AppError("User not found", 404)
-        }
+
 
         const isPasswordMatch = await bcryptjs.compare(payload.password, user.password)
 
