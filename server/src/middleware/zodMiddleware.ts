@@ -5,6 +5,7 @@ import { zodRequestSchema } from "../types/commomTypes"
 export const zodValidationMiddleware = (schema: z.ZodType<zodRequestSchema>): RequestHandler => {
     return (req: Request, res: Response, next: NextFunction): void => {
 
+
         const result = schema.safeParse({
             body: req.body,
             params: req.params,

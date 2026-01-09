@@ -1,7 +1,7 @@
 import { z } from "zod"
 
 
-export const createUserShema = z.object({
+export const createSchema = z.object({
     body: z.object({
         fullName: z.string().trim().min(1, "User name is required").min(3, "Username must be at least 3 characters"),
         email: z.string().min(1, "Email is required").email("Invalid email"),

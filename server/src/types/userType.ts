@@ -1,4 +1,8 @@
 import { z } from "zod"
-import { createUserShema } from "../schemas/index"
+import { createSchema } from "../schemas/index"
 
-export type CreateUserBody = z.infer<typeof createUserShema>["body"];
+const UserRoleSchema = z.enum(["user", "admin", "organizer"])
+
+export type CreateUserBody = z.infer<typeof createSchema>["body"];
+
+export type RoleBody = z.infer<typeof UserRoleSchema>

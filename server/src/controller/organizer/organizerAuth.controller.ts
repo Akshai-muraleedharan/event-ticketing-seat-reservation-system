@@ -4,16 +4,17 @@ import { authService } from "../../services/index"
 import { AppError } from "../../utils/appError"
 import { OtpRequestBody } from "../../interfaces/common.interface"
 
-export const userRegister = async (req: Request<{}, {}, {}>, res: Response<{}>, next: NextFunction) => {
+export const organizerRegister = async (req: Request<{}, {}, {}>, res: Response<{}>, next: NextFunction) => {
 
     const body = res.locals.validated.body
+    console.log(body);
 
     if (!body) {
         throw new AppError("Invalid request body", 400)
     }
 
     try {
-        const response = await authService.registerService(body, "user")
+        const response = await authService.registerService(body, "organizer")
 
         res.cookie("otp_token", response.otpToken, {
             httpOnly: true,
@@ -27,7 +28,7 @@ export const userRegister = async (req: Request<{}, {}, {}>, res: Response<{}>, 
     }
 }
 
-export const userOtpVerification = async (req: Request<{}, {}, {}>, res: Response,) => {
+export const organizerOtpVerification = async (req: Request<{}, {}, {}>, res: Response,) => {
 
 
     const payload: OtpRequestBody = { user_id_otp: res.locals.user_id_otp, body: res.locals.validated.body }
@@ -48,13 +49,13 @@ export const userOtpVerification = async (req: Request<{}, {}, {}>, res: Respons
 
 }
 
-export const userLogin = async (req: Request, res: Response, next: NextFunction) => {
+export const organizerLogin = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const body = res.locals.validated.body
 
 
 
-        const { accessToken, refreshToken, rest } = await authService.loginService(body, "user")
+        const { accessToken, refreshToken, rest } = await authService.loginService(body, "organizer")
 
 
         res.cookie("refreshToken", refreshToken, {

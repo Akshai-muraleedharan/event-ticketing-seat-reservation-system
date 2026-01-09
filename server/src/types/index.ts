@@ -1,2 +1,2 @@
 export { zodRequestSchema } from "./commomTypes"
-export { CreateUserBody } from "./userType"
+export { CreateUserBody, RoleBody } from "./userType"

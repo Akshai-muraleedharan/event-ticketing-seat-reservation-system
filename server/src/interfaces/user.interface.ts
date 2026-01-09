@@ -17,5 +17,6 @@ export interface IUser {
 
 export interface UserPayload {
     email: string,
-    password: string
+    password: string,
+
 }

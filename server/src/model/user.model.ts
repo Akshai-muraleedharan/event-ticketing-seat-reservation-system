@@ -11,7 +11,6 @@ const userSchema = new mongoose.Schema<IUser>({
     },
     email: {
         type: String,
-        unique: true,
         required: true
     },
     emailverified: {
@@ -45,6 +44,6 @@ const userSchema = new mongoose.Schema<IUser>({
 
 }, { timestamps: true })
 
-userSchema.index({ email: 1, roles: 1 })
+userSchema.index({ email: 1, roles: 1 }, { unique: true })
 
 export const User = mongoose.model<IUser>("User", userSchema)

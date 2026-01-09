@@ -1,18 +1,20 @@
 import { User } from "../../model/user.model";
-import { CreateUserBody } from "../../types/index";
+import { CreateUserBody, RoleBody } from "../../types/index";
 import crypto from "crypto"
 import bcryptjs from "bcryptjs"
 import { AppError } from "../../utils/appError";
 import { sendMail } from "../../utils/sendEmail";
 import { generateAccessToken, generateOtpToken, generateRefreshToken } from "../../utils/generateToken";
 import { OtpRequestBody, UserPayload } from "../../interfaces/index";
+import { UserRole } from "../../enums";
 
 export class authService {
-    static async registerUserService(payload: CreateUserBody) {
+    static async registerService(payload: CreateUserBody, role: UserRole) {
 
-        let user = await User.findOne({ email: payload.email })
 
-        if (user && user.emailverified) {
+        let user = await User.findOne({ email: payload.email, roles: role })
+
+        if (user && user?.roles === role) {
             throw new AppError("Account Already exist", 409)
         }
 
@@ -30,7 +32,8 @@ export class authService {
                 phoneNumber: payload.phoneNumber,
                 password: hashedPassword,
                 otp: hashedOtp,
-                otpExpireAt: otpExpiresAt
+                otpExpireAt: otpExpiresAt,
+                roles: role
 
             })
         } else {
@@ -132,7 +135,7 @@ export class authService {
         return
     }
 
-    static async loginService(payload: UserPayload) {
+    static async loginService(payload: UserPayload, role: string) {
 
 
         const user = await User.findOne({ email: payload.email })
@@ -155,7 +158,7 @@ export class authService {
             throw new AppError("Invalid creditials", 400)
         }
 
-        const jwtSignData = { id: user._id, role: "user" }
+        const jwtSignData = { id: user._id, role: role }
 
         const accessToken = generateAccessToken(jwtSignData)
         const refreshToken = generateRefreshToken({ id: user._id })

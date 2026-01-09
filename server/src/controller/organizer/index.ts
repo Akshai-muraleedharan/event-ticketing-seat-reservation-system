@@ -1,0 +1,1 @@
+export { organizerRegister, organizerOtpVerification, organizerLogin } from "./organizerAuth.controller"
