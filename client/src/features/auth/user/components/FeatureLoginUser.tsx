@@ -1,6 +1,6 @@
-import { AuthFeature } from "../../../../components/shared/AuthFeature"
+
 import { AuthSplitLayout } from "../../components/AuthSplitLayout"
-import { LoginForm } from "./LoginForm"
+import { LoginFormUser } from "./LoginFormUser"
 
 
 export const FeatureLoginUser = () => {
@@ -14,7 +14,7 @@ export const FeatureLoginUser = () => {
                 "Secure and seamless login"
             ]}
         >
-            <LoginForm />
+            <LoginFormUser />
         </AuthSplitLayout>
 
 

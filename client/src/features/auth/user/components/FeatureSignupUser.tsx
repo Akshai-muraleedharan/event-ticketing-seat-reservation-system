@@ -1,5 +1,5 @@
 import { AuthSplitLayout } from "../../components/AuthSplitLayout"
-import { SignupForm } from "./SignupForm"
+import { SignupFormUser } from "./SignupFormUser"
 
 
 export const FeatureSignupUser = () => {
@@ -14,7 +14,7 @@ export const FeatureSignupUser = () => {
                 " Stay updated with upcoming events"
             ]}
         >
-            <SignupForm />
+            <SignupFormUser />
         </AuthSplitLayout>
 
     )

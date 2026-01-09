@@ -4,7 +4,7 @@ import type { RegisterInput } from '../types/userTypes'
 import { useUserSignin } from '../hooks/useUserSignin'
 import { toast } from 'react-toastify'
 
-export const SignupForm = () => {
+export const SignupFormUser = () => {
 
     const { register, handleSubmit, reset } = useForm<RegisterInput>()
 

@@ -4,7 +4,7 @@ import { useUserLogin } from "../hooks/useUserLogin"
 import { toast } from "react-toastify"
 import { Link } from "react-router-dom"
 
-export const LoginForm = () => {
+export const LoginFormUser = () => {
 
 
 
