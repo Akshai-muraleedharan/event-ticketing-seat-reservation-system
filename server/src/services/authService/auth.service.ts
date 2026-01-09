@@ -162,7 +162,7 @@ export class authService {
         const refreshToken = generateRefreshToken({ id: user._id })
 
         const userObj = user.toObject()
-        const { password: pass, ...rest } = userObj
+        const { password: pass, emailverified: verify, ...rest } = userObj
 
 
 

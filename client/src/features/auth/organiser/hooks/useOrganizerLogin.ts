@@ -1,16 +1,19 @@
 import { useState } from "react"
 import { AxiosInstance } from "../../../../lib/axiosInstance"
 import type { LoginInputs } from "../types/organizerTypes"
+import { useAuthStore } from "../../../../store"
 
 
 export const useOrganizerLogin = () => {
+
+    const { loginAuth } = useAuthStore()
     const [isLoading, setLoading] = useState<boolean>(false)
 
     const login = async (data: LoginInputs) => {
         try {
             setLoading(true)
             const res = await AxiosInstance.post("/organizer/login", data)
-
+            loginAuth(res?.data?.data, res?.data?.accessToken)
 
             return res?.data
 

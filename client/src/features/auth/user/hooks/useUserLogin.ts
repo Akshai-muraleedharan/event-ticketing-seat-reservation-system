@@ -1,9 +1,10 @@
 import { useState } from "react"
 import { AxiosInstance } from "../../../../lib/axiosInstance"
 import type { LoginInputs } from "../types/userTypes"
-
+import { useAuthStore } from "../../../../store/index"
 
 export const useUserLogin = () => {
+    const { loginAuth } = useAuthStore()
     const [isLoading, setLoading] = useState<boolean>(false)
 
     const login = async (data: LoginInputs) => {
@@ -11,6 +12,7 @@ export const useUserLogin = () => {
             setLoading(true)
             const res = await AxiosInstance.post("/user/login", data)
 
+            loginAuth(res?.data?.data, res?.data?.accessToken)
 
             return res?.data
 
