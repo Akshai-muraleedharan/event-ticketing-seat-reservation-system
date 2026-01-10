@@ -1,6 +1,6 @@
 import mongoose, { Types } from "mongoose"
 import { IEvent } from "../interfaces"
-import { Eventcategory, EventStatus, UserRole } from "../enums"
+import { EventBooking, Eventcategory, EventStatus, UserRole } from "../enums"
 
 
 
@@ -25,7 +25,12 @@ const eventSchema = new mongoose.Schema<IEvent>({
         type: Date,
         required: true
     },
-    createdBy: {
+    createdById: {
+        type: Types.ObjectId,
+        ref: "User",
+        required: true
+    },
+    createdByRole: {
         type: String,
         enum: Object.values(UserRole),
         default: UserRole.ORGANIZER
@@ -71,6 +76,15 @@ const eventSchema = new mongoose.Schema<IEvent>({
         type: Boolean,
         default: false
     },
+    bookingType: {
+        type: String,
+        enum: Object.values(EventBooking),
+        seat: EventBooking.SEAT
+    },
+    bookedCount: {
+        type: Number,
+        default: 0
+    },
     requiresRegistration: {
         type: Boolean,
         default: false
@@ -90,5 +104,9 @@ const eventSchema = new mongoose.Schema<IEvent>({
 
 })
 
+eventSchema.index(
+    { eventName: 1, organizerId: 1 },
+    { unique: true }
+)
 
 export const Event = mongoose.model<IEvent>("Event", eventSchema)

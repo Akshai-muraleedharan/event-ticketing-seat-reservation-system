@@ -1,4 +1,4 @@
 export { IUser, UserPayload } from "./user.interface"
 export { MailOptions } from "./common.interface"
 export { OtpToken, OtpRequestBody, AccessTokenPayload, RefreshTokenPayload, GetProfilePayload } from "./common.interface"
-export { IEvent } from "./event.interface"
+export { IEvent, EventCreateUser } from "./event.interface"

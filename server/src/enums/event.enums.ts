@@ -13,3 +13,8 @@ export enum EventStatus {
     APPROVED = "approved",
     REJECT = "reject"
 }
+
+export enum EventBooking {
+    SEAT = "seat",
+    REGISTRATION = "registration"
+}

@@ -7,7 +7,8 @@ export interface IEvent {
     venue: string,
     startingTime: Date,
     endingTime: Date,
-    createdBy: UserRole
+    createdById: Types.ObjectId,
+    createdByRole: UserRole
     organizerId: Types.ObjectId,
     posterImage: string,
     capacity: number,
@@ -18,8 +19,17 @@ export interface IEvent {
     approvedAt: Date,
     isOpenStage: boolean,
     isFree: boolean,
+    bookingType: string,
+    bookedCount: number,
     requiresRegistration: boolean,
     registrationDeadLine: Date,
     status: EventStatus,
     isDelete: boolean,
+}
+
+export interface EventCreateUser {
+
+    userId: Types.ObjectId,
+    role: UserRole
+
 }
