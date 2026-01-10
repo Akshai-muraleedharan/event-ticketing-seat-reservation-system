@@ -11,7 +11,7 @@ export const OrganizerHomePage = () => {
                 subTitle="Create and manage your events, tickets, and attendees with ease."
                 primaryAction={{
                     label: " Create Event",
-                    to: ""
+                    to: "/organizer/create-event"
                 }}
                 secondaryAction={{
                     label: "View Events",

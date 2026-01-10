@@ -18,7 +18,7 @@ export const LoginFormOrganizer = () => {
             const response = await login(data)
             toast.success("User login successfully")
             if (response?.success) {
-                navigate("/organizer/home", { replace: true })
+                navigate("/organizer", { replace: true })
             }
             reset()
         } catch (error: any) {

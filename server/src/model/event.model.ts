@@ -79,7 +79,7 @@ const eventSchema = new mongoose.Schema<IEvent>({
     bookingType: {
         type: String,
         enum: Object.values(EventBooking),
-        seat: EventBooking.SEAT
+        seat: EventBooking.TICKET
     },
     bookedCount: {
         type: Number,
@@ -88,6 +88,9 @@ const eventSchema = new mongoose.Schema<IEvent>({
     requiresRegistration: {
         type: Boolean,
         default: false
+    },
+    seatLayoutOpenAt: {
+        type: Date
     },
     registrationDeadLine: {
         type: Date

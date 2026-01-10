@@ -15,6 +15,6 @@ export enum EventStatus {
 }
 
 export enum EventBooking {
-    SEAT = "seat",
-    REGISTRATION = "registration"
+    TICKET = "ticket",
+    PASS = "pass"
 }

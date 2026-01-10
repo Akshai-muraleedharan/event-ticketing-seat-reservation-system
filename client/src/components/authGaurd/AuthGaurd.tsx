@@ -14,8 +14,8 @@ export const AuthGaurd = ({ role }: AuthGaurdProps) => {
     const location = useLocation()
 
 
-    const routePath = location.pathname.replace("/home", "")
-    console.log(routePath);
+    const routePath = location.pathname.replace("/", "")
+
 
 
 

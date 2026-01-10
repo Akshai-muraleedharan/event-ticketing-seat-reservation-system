@@ -22,6 +22,7 @@ export interface IEvent {
     bookingType: string,
     bookedCount: number,
     requiresRegistration: boolean,
+    seatLayoutOpenAt: Date
     registrationDeadLine: Date,
     status: EventStatus,
     isDelete: boolean,

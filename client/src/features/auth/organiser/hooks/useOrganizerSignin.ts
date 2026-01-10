@@ -1,6 +1,6 @@
 import { useState } from "react"
 import type { RegisterInput } from "../types/organizerTypes"
-import { AxiosInstance } from "../../../../lib/axiosInstance"
+import { axiosInstance } from "../../../../lib/axiosInstance"
 
 
 export const useOrganizerSignin = () => {
@@ -9,7 +9,7 @@ export const useOrganizerSignin = () => {
     const signIn = async (data: RegisterInput) => {
         try {
             setLoading(true)
-            const res = await AxiosInstance.post("/organizer/register", data)
+            const res = await axiosInstance.post("/organizer/register", data)
 
 
             return res?.data

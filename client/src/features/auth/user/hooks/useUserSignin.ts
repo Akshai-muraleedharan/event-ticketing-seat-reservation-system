@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { AxiosInstance } from "../../../../lib/axiosInstance"
+import { axiosInstance } from "../../../../lib/axiosInstance"
 import type { RegisterInput } from "../types/userTypes"
 
 export const useUserSignin = () => {
@@ -8,7 +8,7 @@ export const useUserSignin = () => {
     const signIn = async (data: RegisterInput) => {
         try {
             setLoading(true)
-            const res = await AxiosInstance.post("/user/register", data)
+            const res = await axiosInstance.post("/user/register", data)
 
 
             return res?.data
