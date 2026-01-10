@@ -2,7 +2,7 @@ import dotenv from "dotenv";
 dotenv.config()
 
 
-export const getEnvVariable = (key: string,): string | undefined => {
+export const getEnvVariable = (key: string): string => {
 
     const value = process.env[key];
 
@@ -10,6 +10,6 @@ export const getEnvVariable = (key: string,): string | undefined => {
         console.error(`Environment variable ${key} is not defined`)
     }
 
-    return value;
+    return value as string;
 
 }

@@ -27,3 +27,7 @@ export interface AccessTokenPayload {
 export interface RefreshTokenPayload {
     id: Types.ObjectId,
 }
+
+export interface GetProfilePayload {
+    userId: Types.ObjectId
+}
