@@ -28,24 +28,28 @@ export const userRegister = async (req: Request<{}, {}, {}>, res: Response<{}>, 
     }
 }
 
-export const userOtpVerification = async (req: Request<{}, {}, {}>, res: Response,) => {
+export const userOtpVerification = async (req: Request<{}, {}, {}>, res: Response, next: NextFunction) => {
 
+    try {
+        const payload: OtpRequestBody = { user_id_otp: res.locals.user_id_otp, body: res.locals.validated.body }
 
-    const payload: OtpRequestBody = { user_id_otp: res.locals.user_id_otp, body: res.locals.validated.body }
+        if (!payload) {
+            throw new AppError("Invalid request body", 400)
+        }
 
-    if (!payload) {
-        throw new AppError("Invalid request body", 400)
+        await authService.verifyOtpService(payload, UserRole.USER)
+
+        res.clearCookie("otp_token", {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === "production",
+            sameSite: "strict",
+        });
+
+        res.status(200).json({ success: true, message: "Account verified successfully", })
+
+    } catch (error) {
+        next(error)
     }
-
-    await authService.verifyOtpService(payload, UserRole.USER)
-
-    res.clearCookie("otp_token", {
-        httpOnly: true,
-        secure: process.env.NODE_ENV === "production",
-        sameSite: "strict",
-    });
-
-    res.status(200).json({ success: true, message: "Account verified successfully", })
 
 }
 

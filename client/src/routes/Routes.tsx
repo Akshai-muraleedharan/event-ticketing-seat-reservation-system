@@ -1,9 +1,10 @@
 import { Routes, Route } from "react-router-dom"
 import { RootLayout } from "../layouts/RootLayout"
-import { NotAuthorizedPage, OrganizerCreateEvent, OrganizerHomePage, OrganizerLogin, OrganizerOtp, OrganizerSignup, RootPage, UserLogin, UserOtp, UserSignup } from "../pages/index"
+import { NotAuthorizedPage, OrganizerCreateEvent, OrganizerDashboardCreateEvent, OrganizerHomePage, OrganizerLogin, OrganizerOtp, OrganizerSignup, RootPage, UserLogin, UserOtp, UserSignup } from "../pages/index"
 import { OrganizerLayout } from "../layouts/OrganizerLayout"
-import { AuthGaurd } from "../components/authGaurd/AuthGaurd"
 import { UserRole } from "../constants/UserRoles"
+import { OrganizerProtectedRoute } from "./protectedRoutes/OrganizerProtectedRoute"
+import { OrganizerDashboardLayout } from "../layouts/OrganizerDashboardLayout"
 
 
 
@@ -26,13 +27,19 @@ export const AppRoute = () => {
                 </Route>
             </Route>
 
-            <Route element={<AuthGaurd role={UserRole.ORGANIZER} />}>
+            <Route element={<OrganizerProtectedRoute role={UserRole.ORGANIZER} />}>
                 <Route path="/organizer" element={<OrganizerLayout />}>
                     <Route index element={<OrganizerHomePage />} />
                     <Route path="create-event" element={<OrganizerCreateEvent />} />
                 </Route>
             </Route>
 
-        </Routes>
+            <Route element={<OrganizerProtectedRoute role={UserRole.ORGANIZER} />} >
+                <Route path="dashboard" element={<OrganizerDashboardLayout />}>
+                    <Route path="create-event" element={<OrganizerDashboardCreateEvent />} />
+                </Route >
+            </Route>
+
+        </Routes >
     )
 }

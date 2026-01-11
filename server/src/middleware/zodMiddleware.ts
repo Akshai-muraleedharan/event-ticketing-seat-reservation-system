@@ -4,6 +4,7 @@ import { zodRequestSchema } from "../types/commomTypes"
 
 export const zodValidationMiddleware = (schema: z.ZodType<zodRequestSchema>): RequestHandler => {
     return (req: Request, res: Response, next: NextFunction): void => {
+        console.log(req.body);
 
 
         const result = schema.safeParse({
@@ -12,6 +13,7 @@ export const zodValidationMiddleware = (schema: z.ZodType<zodRequestSchema>): Re
             query: req.query
         })
 
+        console.log(result);
 
 
         if (!result.success) {

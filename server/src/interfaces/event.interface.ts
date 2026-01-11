@@ -5,8 +5,8 @@ export interface IEvent {
     eventName: string,
     description: string,
     venue: string,
-    startingTime: Date,
-    endingTime: Date,
+    startingTime?: Date,
+    endingTime?: Date,
     createdById: Types.ObjectId,
     createdByRole: UserRole
     organizerId: Types.ObjectId,

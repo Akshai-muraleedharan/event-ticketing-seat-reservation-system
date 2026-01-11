@@ -18,12 +18,18 @@ export const verifyOtpToken = async (req: Request, res: Response, next: NextFunc
         }
 
         const decode = jwt.verify(otp_token, otpSecret as Secret) as JwtPayload & {
-            id: string
+            id: Types.ObjectId
         }
-        res.locals.user_id_otp = new Types.ObjectId(decode.userId)
+
+
+
+
+        res.locals.user_id_otp = decode
 
         next()
     } catch (error: any) {
+
+
         if (error.name === "JsonWebTokenError") {
             throw new AppError(isDev ? error.message : "Unauthorized", 401)
         }

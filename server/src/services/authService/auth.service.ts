@@ -106,7 +106,8 @@ export class authService {
 
 
 
-        const findUser = await User.findOne({ _id: payload.user_id_otp, roles: role })
+        const findUser = await User.findOne({ _id: payload.user_id_otp.id, roles: role })
+
 
         if (!findUser || !findUser.otp) {
             throw new AppError("OTP expired", 400)
