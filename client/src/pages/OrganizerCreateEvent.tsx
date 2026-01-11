@@ -1,5 +1,5 @@
 
-import { EventCreateForm } from '../features/event'
+import { EventCreateForm } from '../features/index'
 
 export const OrganizerCreateEvent = () => {
     return (

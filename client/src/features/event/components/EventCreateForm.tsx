@@ -110,13 +110,13 @@ export const EventCreateForm = () => {
             {isTicket && <fieldset className='grid grid-cols-1 md:grid-cols-2 gap-4 mt-5'>
                 <div>
                     <legend className="fieldset-legend">Ticket Booking Starting Date</legend>
-                    <input type="datetime-local" {...register("ticketBookStartTime", { valueAsDate: true })} className="input w-full input-primary" />
+                    <input type="datetime-local" {...register("ticketBookStartDateAndTime", { valueAsDate: true })} className="input w-full input-primary" />
                 </div>
 
 
                 <div>
                     <legend className="fieldset-legend">Ticket Booking Ending Date</legend>
-                    <input type="datetime-local" {...register("ticketBookEndTime", { valueAsDate: true })} className="input w-full input-primary" />
+                    <input type="datetime-local" {...register("ticketBookEndDateAndTime", { valueAsDate: true })} className="input w-full input-primary" />
                 </div>
             </fieldset>}
 

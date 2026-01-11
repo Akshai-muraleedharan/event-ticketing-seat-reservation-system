@@ -17,6 +17,18 @@ const eventSchema = new mongoose.Schema<IEvent>({
         type: String,
         required: true
     },
+    venueAddress: {
+        type: String,
+        required: true
+    },
+    ticketBookStartDateAndTime: {
+        type: Date,
+        required: true,
+    },
+    ticketBookEndDateAndTime: {
+        type: Date,
+        required: true,
+    },
     startingTime: {
         type: Date,
         required: true,

@@ -1,1 +1,1 @@
-export { createEvent, getEventSingleDetail } from "./event.controller"
+export { createEvent, getEventSingleDetail, getEvent } from "./event.controller"

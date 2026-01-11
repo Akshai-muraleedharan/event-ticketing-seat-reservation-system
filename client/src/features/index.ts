@@ -6,3 +6,4 @@ export { FeatureSignupOrganizer } from "./auth/organiser/components/FeatureSignu
 export { FeatureOtpOrganizer } from "./auth/organiser/components/FeatureOtpOrganizer"
 export { EventCreateForm } from "./event/components/EventCreateForm"
 export { EventTable } from "./event/components/EventTable"
+export { EventSingleDetail } from "./event/components/EventSingleDetail"

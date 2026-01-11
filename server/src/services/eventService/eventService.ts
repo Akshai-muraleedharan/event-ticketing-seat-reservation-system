@@ -39,4 +39,12 @@ export class eventService {
         return { findEvent }
     }
 
+    static async getEvents() {
+
+        const findEvents = await Event.find({});
+
+
+        return findEvents
+    }
+
 }

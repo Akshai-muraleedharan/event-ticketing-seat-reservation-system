@@ -4,8 +4,8 @@ export type EventCreateInput = {
     venue: string,
     venueAddress: string,
     startingTime: Date,
-    ticketBookStartTime: Date,
-    ticketBookEndTime: Date,
+    ticketBookStartDateAndTime: Date,
+    ticketBookEndDateAndTime: Date,
     endingTime: Date,
     posterImage: string,
     capacity: number,
@@ -15,4 +15,39 @@ export type EventCreateInput = {
     bookingType: string,
     requiresRegistration: boolean,
     registrationDeadLine: Date
+}
+
+export type EventTableType = {
+    _id: string,
+    eventName: string,
+    venue: string,
+    capacity: number,
+    isOpenStage: boolean,
+    isFree: boolean,
+    bookingType: string,
+    category: string,
+    status: string,
+    requiresRegistration: boolean,
+
+}
+
+export type EventSingle = {
+    findEvent: {
+        eventName: string,
+        posterImage: string,
+        category: string,
+        isFree: boolean,
+        isOpenStage: boolean,
+        requiresRegistration: boolean,
+        startingTime: string,
+        venue: string,
+        capacity: string,
+        venueAddress: string,
+        endingTime: string,
+        status: string,
+        ticketBookStartDateAndTime: string,
+        ticketBookEndDateAndTime: string,
+        registrationDeadLine: string,
+        description: string
+    }
 }

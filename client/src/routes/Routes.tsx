@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom"
 import { RootLayout } from "../layouts/RootLayout"
-import { NotAuthorizedPage, OrganizerCreateEvent, OrganizerDashboardCreateEvent, OrganizerEvent, OrganizerHomePage, OrganizerLogin, OrganizerOtp, OrganizerSignup, RootPage, UserLogin, UserOtp, UserSignup } from "../pages/index"
+import { NotAuthorizedPage, OrganizerCreateEvent, OrganizerDashboardCreateEvent, OrganizerEvent, OrganizerEventDetail, OrganizerHomePage, OrganizerLogin, OrganizerOtp, OrganizerSignup, RootPage, UserLogin, UserOtp, UserSignup } from "../pages/index"
 import { OrganizerLayout } from "../layouts/OrganizerLayout"
 import { UserRole } from "../constants/UserRoles"
 import { OrganizerProtectedRoute } from "./protectedRoutes/OrganizerProtectedRoute"
@@ -38,6 +38,7 @@ export const AppRoute = () => {
                 <Route path="dashboard" element={<OrganizerDashboardLayout />}>
                     <Route path="create-event" element={<OrganizerDashboardCreateEvent />} />
                     <Route path="events" element={<OrganizerEvent />} />
+                    <Route path="event/:id" element={<OrganizerEventDetail />} />
                 </Route >
             </Route>
 

@@ -1,15 +1,17 @@
 import React, { useState } from 'react'
 import { axiosInstance } from '../../../lib/axiosInstance'
+import { useParams } from 'react-router-dom'
 
 
-export const useEvent = () => {
+export const useSingleEvent = () => {
     const [isLoading, setLoading] = useState<boolean>(false)
 
+    const params = useParams()
 
-    const getEvents = async () => {
+    const getEvent = async () => {
         try {
             setLoading(true)
-            const res = await axiosInstance.get("/event")
+            const res = await axiosInstance.get(`/event/${params.id}`)
 
             return res?.data
 
@@ -22,5 +24,5 @@ export const useEvent = () => {
         }
     }
 
-    return { isLoading, getEvents, }
+    return { isLoading, getEvent, }
 }
