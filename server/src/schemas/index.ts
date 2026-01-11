@@ -1,2 +1,2 @@
 export { createSchema, otpSchema, loginSchema } from "./userSchema"
-export { createEventSchema } from "./eventSchema"
+export { createEventSchema, singleEventIdSchema } from "./eventSchema"

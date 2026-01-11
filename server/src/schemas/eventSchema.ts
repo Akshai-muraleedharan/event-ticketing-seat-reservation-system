@@ -1,5 +1,6 @@
 import { z } from "zod"
 import { EventBooking, Eventcategory } from "../enums"
+import mongoose from "mongoose"
 
 const isoDate = z.string().min(1, "Event date & time is required")
 
@@ -19,5 +20,12 @@ export const createEventSchema = z.object({
         isFree: z.boolean().optional(),
         requiresRegistration: z.boolean().optional(),
         registrationDeadline: isoDate.optional()
+    })
+})
+
+
+export const singleEventIdSchema = z.object({
+    params: z.object({
+        eventId: z.string().refine((val) => mongoose.Types.ObjectId.isValid(val), { message: "Invalid objectId" })
     })
 })

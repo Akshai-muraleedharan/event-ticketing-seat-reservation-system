@@ -1,14 +1,15 @@
 import { Link } from "react-router-dom"
 import { FaHome } from "react-icons/fa";
 import { IoIosCreate } from "react-icons/io";
-
+import { FaTable } from "react-icons/fa";
 
 export const SideBar = () => {
 
 
     const sideBarLink = [
         { name: "HomePage", path: "/organizer", icon: FaHome },
-        { name: "CreateEvent", path: "/dashboard/create-event", icon: IoIosCreate }
+        { name: "CreateEvent", path: "/dashboard/create-event", icon: IoIosCreate },
+        { name: "Events", path: "/dashboard/events", icon: FaTable }
     ]
 
     return (

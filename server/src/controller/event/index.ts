@@ -1,0 +1,1 @@
+export { createEvent, getEventSingleDetail } from "./event.controller"
