@@ -2,8 +2,9 @@ import mongoose from "mongoose";
 import { SeatStatus } from "../../enums";
 import { Seat } from "../../model/seat.model";
 import { SeatLayout } from "../../model/seatLayout";
-import { createSeatPayload } from "../../types";
+import { createSeatPayload, getSeatPayload } from "../../types";
 import { AppError } from "../../utils/appError";
+import { Event } from "../../model/event.model";
 
 
 
@@ -79,9 +80,21 @@ export class seatService {
             // await session.endSession()
         }
 
+    }
 
+    static async getSeats(payload: getSeatPayload) {
 
+        const findEventExist = await Event.findOne({ _id: payload.eventId }).select("_id eventName")
 
+        if (!findEventExist) {
+            throw new AppError("Event Not exist", 404)
+        }
+
+        const findSeats = await Seat.find({ eventId: payload.eventId }).sort({ row: 1, column: 1 })
+
+        const data = { event: findEventExist, seats: findSeats }
+
+        return data
 
     }
 }

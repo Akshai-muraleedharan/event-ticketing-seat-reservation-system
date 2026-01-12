@@ -33,6 +33,7 @@ export type EventTableType = {
 
 export type EventSingle = {
     findEvent: {
+        _id: string,
         eventName: string,
         posterImage: string,
         category: string,
@@ -60,4 +61,18 @@ export type featuredEvent = {
     startingTime: string,
     posterImage: string,
     bookingType: string
+}
+
+
+export type Seats = {
+    _id: string,
+    category: string,
+    column: number
+    eventId: string
+    price: number
+    row: string
+    seatCode: string
+    seatLayoutId: string
+    status: string
+
 }

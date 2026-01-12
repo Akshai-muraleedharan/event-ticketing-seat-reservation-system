@@ -4,6 +4,10 @@
 @plugin "daisyui";
 
 
+.scrollbar-none::-webkit-scrollbar {
+    display: none;
+}
+
 :root {
     --font-poppins: "Poppins", sans-serif;
     --font-inter: "Inter", sans-serif;

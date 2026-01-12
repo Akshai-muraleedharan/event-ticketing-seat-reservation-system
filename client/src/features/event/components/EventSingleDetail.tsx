@@ -28,7 +28,15 @@ export const EventSingleDetail = () => {
 
     const handleRegister = () => {
         if (user && isAuthenticated) {
-            navigate("")
+            navigate(`/user/event/${event?.findEvent._id}/register`)
+        } else {
+            navigate("/user/login")
+        }
+    }
+
+    const handleBook = () => {
+        if (user && isAuthenticated) {
+            navigate(`/user/event/${event?.findEvent._id}/seat`)
         } else {
             navigate("/user/login")
         }
@@ -89,7 +97,7 @@ export const EventSingleDetail = () => {
                             {event?.findEvent.requiresRegistration ? (
                                 <button onClick={handleRegister} className='btn btn-primary w-full md:w-1/4'>Register now</button>
                             ) : (
-                                <button className='btn btn-primary w-full md:w-1/4'> Book ticket</button>
+                                <button onClick={handleBook} className='btn btn-primary w-full md:w-1/4'> Book ticket</button>
                             )}
                         </div>}
 

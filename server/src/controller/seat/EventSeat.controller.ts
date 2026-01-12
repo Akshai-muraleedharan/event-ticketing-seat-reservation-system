@@ -1,5 +1,5 @@
 import type { Request, Response, NextFunction } from "express"
-import { seatService } from "../../services"
+import { eventService, seatService } from "../../services"
 
 export const createEventSeat = async (req: Request, res: Response, next: NextFunction) => {
     try {
@@ -13,6 +13,21 @@ export const createEventSeat = async (req: Request, res: Response, next: NextFun
     } catch (error) {
 
         console.log(error)
+        next(error)
+    }
+}
+
+
+
+
+export const fetchSeatForDisplay = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const eventId = res.locals.validated.params
+
+        const response = await seatService.getSeats(eventId)
+
+        res.status(200).json({ success: true, message: "Seat Featched successfully", data: response })
+    } catch (error) {
         next(error)
     }
 }

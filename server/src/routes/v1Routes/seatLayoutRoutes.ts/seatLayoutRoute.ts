@@ -11,4 +11,4 @@ import { seatLayoutSchema } from "../../../schemas/index";
 export const seatLayoutRouter = expres.Router();
 
 
-seatLayoutRouter.post("/:eventId", userTokenVerify, roleAuth(UserRole.ORGANIZER), zodValidationMiddleware(seatLayoutSchema), createSeatLayout)
+seatLayoutRouter.post("/event/:eventId", userTokenVerify, roleAuth(UserRole.ORGANIZER), zodValidationMiddleware(seatLayoutSchema), createSeatLayout)
