@@ -51,3 +51,13 @@ export type EventSingle = {
         description: string
     }
 }
+
+
+export type featuredEvent = {
+    _id: string,
+    eventName: string,
+    venue: string,
+    startingTime: string,
+    posterImage: string,
+    bookingType: string
+}

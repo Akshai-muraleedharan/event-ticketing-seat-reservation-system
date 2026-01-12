@@ -3,27 +3,36 @@ import { useSingleEvent } from '../hooks/useSingleEvent'
 import type { EventSingle } from '../types/eventTypes'
 import { Detail } from '../../../components/ui/Detail'
 import { useAuthStore } from '../../../store'
+import { useNavigate } from 'react-router-dom'
 
 export const EventSingleDetail = () => {
     const [event, setEvent] = useState<EventSingle | null>(null)
 
 
-    const user = useAuthStore().user?.roles
+    const { user, isAuthenticated } = useAuthStore()
     const { getEvent } = useSingleEvent()
 
     const formattedDate = (date: string) => {
         return new Date(date).toLocaleString()
     }
 
+    const navigate = useNavigate()
+
     let isOrganizerOrAdmin
 
-    if (user === "organizer" || user === "admin") {
+    if (user?.roles === "organizer" || user?.roles === "admin") {
         isOrganizerOrAdmin = true
     } else {
         isOrganizerOrAdmin = false
     }
 
-
+    const handleRegister = () => {
+        if (user && isAuthenticated) {
+            navigate("")
+        } else {
+            navigate("/user/login")
+        }
+    }
 
 
 
@@ -78,7 +87,7 @@ export const EventSingleDetail = () => {
 
                         {!isOrganizerOrAdmin && <div className='flex justify-end'>
                             {event?.findEvent.requiresRegistration ? (
-                                <button className='btn btn-primary w-full md:w-1/4'>Register now</button>
+                                <button onClick={handleRegister} className='btn btn-primary w-full md:w-1/4'>Register now</button>
                             ) : (
                                 <button className='btn btn-primary w-full md:w-1/4'> Book ticket</button>
                             )}

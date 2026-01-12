@@ -1,3 +1,4 @@
+import { EventStatus } from "../../enums";
 import { authUser } from "../../interfaces";
 import { Event } from "../../model/event.model";
 import { SeatLayout } from "../../model/seatLayout";
@@ -40,12 +41,32 @@ export class eventService {
         return { findEvent }
     }
 
+
     static async getEvents() {
 
         const findEvents = await Event.find({});
 
-
         return findEvents
+    }
+
+
+    static async getThreeEventService() {
+        const findThreeEvent = await Event.aggregate([
+            { $match: { status: EventStatus.APPROVED } },
+            { $sort: { popularityScore: -1 } },
+            { $limit: 3 },
+            {
+                $project: {
+                    eventName: 1,
+                    posterImage: 1,
+                    venue: 1,
+                    startingTime: 1,
+                    bookingType: 1
+                }
+            }
+        ])
+
+        return findThreeEvent;
     }
 
 

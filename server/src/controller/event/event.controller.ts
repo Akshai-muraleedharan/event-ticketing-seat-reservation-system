@@ -34,6 +34,18 @@ export const getEventSingleDetail = async (req: Request, res: Response, next: Ne
     }
 }
 
+export const getFeaturedEvent = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const response = await eventService.getThreeEventService()
+
+
+        res.status(200).json({ success: true, message: "Fetched successfully", data: response })
+
+    } catch (error) {
+        next(error)
+    }
+}
+
 export const getEvent = async (req: Request, res: Response, next: NextFunction) => {
     try {
 

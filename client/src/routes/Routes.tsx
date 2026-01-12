@@ -1,10 +1,12 @@
 import { Routes, Route } from "react-router-dom"
 import { RootLayout } from "../layouts/RootLayout"
-import { NotAuthorizedPage, OrganizerCreateEvent, OrganizerDashboardCreateEvent, OrganizerEvent, OrganizerEventDetail, OrganizerHomePage, OrganizerLogin, OrganizerOtp, OrganizerSignup, RootPage, UserLogin, UserOtp, UserSignup } from "../pages/index"
+import { NotAuthorizedPage, OrganizerCreateEvent, OrganizerDashboardCreateEvent, OrganizerEvent, OrganizerEventDetail, OrganizerHomePage, OrganizerLogin, OrganizerOtp, OrganizerSignup, RootEventSinglePage, RootPage, UserEventSinglePage, UserHomePage, UserLogin, UserOtp, UserSignup } from "../pages/index"
 import { OrganizerLayout } from "../layouts/OrganizerLayout"
 import { UserRole } from "../constants/UserRoles"
 import { OrganizerProtectedRoute } from "./protectedRoutes/OrganizerProtectedRoute"
 import { OrganizerDashboardLayout } from "../layouts/OrganizerDashboardLayout"
+import { UserProtectedRoute } from "./protectedRoutes/UserProtectedRoute"
+import { UserLayout } from "../layouts/UserLayout"
 
 
 
@@ -15,6 +17,7 @@ export const AppRoute = () => {
             <Route element={<RootLayout />} >
                 <Route path="/" element={<RootPage />} />
                 <Route path="/403" element={<NotAuthorizedPage />} />
+                <Route path="event/:id" element={<RootEventSinglePage />} />
                 <Route path="user">
                     <Route path="login" element={<UserLogin />} />
                     <Route path="signup" element={<UserSignup />} />
@@ -40,6 +43,13 @@ export const AppRoute = () => {
                     <Route path="events" element={<OrganizerEvent />} />
                     <Route path="event/:id" element={<OrganizerEventDetail />} />
                 </Route >
+            </Route>
+
+            <Route element={<UserProtectedRoute role={UserRole.USER} />}>
+                <Route path="/user" element={<UserLayout />}>
+                    <Route index element={<UserHomePage />} />
+                    <Route path="event/:id" element={<UserEventSinglePage />} />
+                </Route>
             </Route>
 
         </Routes >

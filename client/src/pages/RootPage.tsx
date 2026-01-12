@@ -1,5 +1,6 @@
 import { FeatureSection } from "../components/features/FeatureSection"
 import { HeroContent } from "../components/hero/HeroContent"
+import { EventFeatureSection } from "../features"
 
 
 export const RootPage = () => {
@@ -18,7 +19,9 @@ export const RootPage = () => {
                 }}
             />
 
+            <EventFeatureSection />
             <FeatureSection />
+
         </>
     )
 }

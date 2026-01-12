@@ -19,7 +19,7 @@ export const LoginFormUser = () => {
             toast.success("User login successfully")
 
             if (response?.success) {
-                navigate("", { replace: true })
+                navigate("/user", { replace: true })
             }
             reset()
         } catch (error: any) {
