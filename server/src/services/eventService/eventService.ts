@@ -1,13 +1,14 @@
-import { EventCreateUser } from "../../interfaces";
+import { authUser } from "../../interfaces";
 import { Event } from "../../model/event.model";
+import { SeatLayout } from "../../model/seatLayout";
 import { createEventBody } from "../../types";
-import { EventSingleId } from "../../types/eventType";
+import { createSeatLayoutBody, EventSingleId } from "../../types/eventType";
 import { AppError } from "../../utils/appError";
 
 
 
 export class eventService {
-    static async createEvent(payload: createEventBody, creater: EventCreateUser) {
+    static async createEvent(payload: createEventBody, creater: authUser) {
 
         const findEvent = await Event.findOne({ eventName: payload.eventName, organizerId: creater.userId })
 
@@ -47,4 +48,29 @@ export class eventService {
         return findEvents
     }
 
+
+
+
+    // SEAT LAYOUT BELOW
+
+    static async createSeatLayout(payload: createSeatLayoutBody, eventId: EventSingleId, creator: authUser) {
+
+        const seatLayoutExist = await SeatLayout.findOne({ eventId: eventId.eventId, createdBy: creator.userId })
+
+        if (seatLayoutExist) {
+            throw new AppError("Seat Layout Already Exist", 409)
+        }
+        const newSeatLayout = new SeatLayout({
+            ...payload,
+            eventId: eventId.eventId,
+            createdBy: creator.userId
+
+        })
+
+        await newSeatLayout.save()
+
+        return { newSeatLayout }
+    }
 }
+
+

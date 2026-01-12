@@ -18,3 +18,9 @@ export enum EventBooking {
     TICKET = "ticket",
     PASS = "pass"
 }
+
+export enum SeatStatus {
+    AVAILABLE = "available",
+    LOCKED = "locked",
+    BOOKED = "booked"
+}

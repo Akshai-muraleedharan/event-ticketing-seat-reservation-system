@@ -1,0 +1,1 @@
+export { createEventSeat } from "./EventSeat.controller"

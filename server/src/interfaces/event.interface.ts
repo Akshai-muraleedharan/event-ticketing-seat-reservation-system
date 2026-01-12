@@ -1,5 +1,5 @@
 import { Types } from "mongoose";
-import { Eventcategory, EventStatus, UserRole } from "../enums";
+import { Eventcategory, EventStatus, SeatStatus, UserRole } from "../enums";
 
 export interface IEvent {
     eventName: string,
@@ -31,9 +31,40 @@ export interface IEvent {
     isDelete: boolean,
 }
 
-export interface EventCreateUser {
+export interface authUser {
 
     userId: Types.ObjectId,
     role: UserRole
 
+}
+
+export interface ISeatLayout {
+    eventId: Types.ObjectId,
+    rows: {
+        name: string,
+        seatCount: number
+    }[]
+    ,
+    categories: {
+        name: string,
+        price: number,
+        rows: [string]
+    }[]
+    ,
+    createdBy: Types.ObjectId,
+    isPublished: boolean
+}
+
+
+export interface Iseat {
+    eventId: Types.ObjectId,
+    seatLayoutId: Types.ObjectId,
+    seatCode: string,
+    row: string,
+    column: Number,
+    category: string,
+    price: Number,
+    status: SeatStatus,
+    lockedUntil: Date,
+    bookedBy: Types.ObjectId
 }

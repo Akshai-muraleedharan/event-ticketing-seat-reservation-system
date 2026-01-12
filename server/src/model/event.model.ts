@@ -117,7 +117,7 @@ const eventSchema = new mongoose.Schema<IEvent>({
         default: false
     }
 
-})
+}, { timestamps: true })
 
 eventSchema.index(
     { eventName: 1, organizerId: 1 },

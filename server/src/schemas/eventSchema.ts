@@ -1,6 +1,6 @@
 import { z } from "zod"
 import { EventBooking, Eventcategory } from "../enums"
-import mongoose from "mongoose"
+import { Types } from "mongoose"
 
 const isoDate = z.string().min(1, "Event date & time is required")
 
@@ -29,6 +29,31 @@ export const createEventSchema = z.object({
 
 export const singleEventIdSchema = z.object({
     params: z.object({
-        eventId: z.string().refine((val) => mongoose.Types.ObjectId.isValid(val), { message: "Invalid objectId" })
+        eventId: z.string().refine((val) => Types.ObjectId.isValid(val), { message: "Invalid objectId" })
     })
 })
+
+export const seatLayoutSchema = z.object({
+    params: z.object({
+        eventId: z.string().refine((val) => Types.ObjectId.isValid(val), { message: "Invalid objectId" })
+    }),
+    body: z.object({
+        rows: z.array(
+            z.object({
+                name: z.string(),
+                seatCount: z.number().positive()
+            })
+        ),
+
+
+        categories: z.array(
+            z.object({
+                name: z.string(),
+                price: z.number().positive(),
+                rows: z.array(z.string())
+            })
+        )
+
+    })
+})
+
