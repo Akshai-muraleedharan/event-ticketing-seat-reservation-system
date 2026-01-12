@@ -46,9 +46,9 @@ const seatSchema = new mongoose.Schema<Iseat>({
     bookedBy: {
         type: Types.ObjectId,
         ref: "User",
-        required: true
     }
 }, { timestamps: true })
 
+seatSchema.index({ eventId: 1, seatCode: 1 }, { unique: true })
 
 export const Seat = mongoose.model<Iseat>("Seat", seatSchema)

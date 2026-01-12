@@ -42,7 +42,6 @@ const seatLayoutSchema = new mongoose.Schema<ISeatLayout>({
     createdBy: {
         type: Types.ObjectId,
         ref: "User",
-        required: true
     },
     isPublished: {
         type: Boolean,
