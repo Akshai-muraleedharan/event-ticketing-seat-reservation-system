@@ -27,6 +27,7 @@ export interface IEvent {
     requiresRegistration: boolean,
     seatLayoutOpenAt: Date
     registrationDeadLine: Date,
+    registrationAmount: number
     status: EventStatus,
     isDelete: boolean,
 }

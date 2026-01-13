@@ -72,6 +72,7 @@ export class eventService {
 
 
 
+
     // SEAT LAYOUT BELOW
 
     static async createSeatLayout(payload: createSeatLayoutBody, eventId: EventSingleId, creator: authUser) {

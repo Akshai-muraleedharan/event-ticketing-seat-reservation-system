@@ -88,6 +88,7 @@ export const EventSingleDetail = () => {
                                     {event?.findEvent.venueAddress && <Detail label={"Address"} value={event.findEvent.venueAddress} />}
                                     {/* not bug */}
                                     {event?.findEvent.startingTime && <Detail label={"Entry"} value={event.findEvent.isFree ? "Free" : "Paid"} />}
+                                    {event?.findEvent.requiresRegistration && event?.findEvent.registrationAmount && event?.findEvent.registrationAmount > 0 && <Detail label={"Registratoin Amount"} value={event.findEvent.registrationAmount.toString()} />}
                                 </div>
 
                             </div>

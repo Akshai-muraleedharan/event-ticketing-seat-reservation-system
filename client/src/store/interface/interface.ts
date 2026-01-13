@@ -29,3 +29,10 @@ export interface AuthState {
 
     logOut: () => void
 }
+
+export interface CommonState {
+    mockPaymentOpen: boolean,
+
+    handleOpenPayment: (payload: boolean) => void
+    handleClosePayment: (payload: boolean) => void
+}

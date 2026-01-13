@@ -8,8 +8,9 @@ export const EventSeatLayout = () => {
     const { getSeats } = useEventSeatLayout()
 
     const [seats, setSeats] = useState<Seats[]>([])
-    const [selectedSeats, setSelectedSeats] = useState<any[]>([])
+    const [selectedSeats, setSelectedSeats] = useState<Seats[]>([])
 
+    console.log(selectedSeats);
 
     const groupedSeats = seats.reduce((acc: any, seat: any) => {
         if (!acc[seat.row]) acc[seat.row] = []

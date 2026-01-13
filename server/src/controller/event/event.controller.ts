@@ -60,3 +60,4 @@ export const getEvent = async (req: Request, res: Response, next: NextFunction) 
     }
 
 }
+

@@ -107,6 +107,10 @@ const eventSchema = new mongoose.Schema<IEvent>({
     registrationDeadLine: {
         type: Date
     },
+    registrationAmount: {
+        type: Number,
+        default: 0
+    },
     status: {
         type: String,
         enum: Object.values(EventStatus),

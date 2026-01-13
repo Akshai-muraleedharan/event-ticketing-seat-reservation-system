@@ -49,7 +49,8 @@ export type EventSingle = {
         ticketBookStartDateAndTime: string,
         ticketBookEndDateAndTime: string,
         registrationDeadLine: string,
-        description: string
+        description: string,
+        registrationAmount: number
     }
 }
 
@@ -76,3 +77,10 @@ export type Seats = {
     status: string
 
 }
+
+export type BookingFormData = {
+    attendeeName: string;
+    attendeeEmail: string;
+    attendeePhone: string;
+};
+
