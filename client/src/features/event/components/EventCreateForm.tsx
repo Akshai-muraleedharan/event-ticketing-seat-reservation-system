@@ -157,7 +157,7 @@ export const EventCreateForm = () => {
                     <input type="datetime-local" {...register("registrationDeadLine")} className="input w-full input-primary" />
                 </div>
             </fieldset>
-            <button className="btn btn-primary mt-10 w-full">Submit</button>
+            <button disabled={true} className="btn btn-primary mt-10 w-full">Submit</button>
         </form>
     )
 }

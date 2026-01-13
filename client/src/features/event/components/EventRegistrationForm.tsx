@@ -34,7 +34,7 @@ export const EventRegistrationForm = () => {
                     <input {...register("attendeePhone")} type="tel" placeholder="Phone Number" className="input w-full " />
                 </div>
             </fieldset>
-            <button className="btn btn-primary mt-10 w-full">Submit</button>
+            <button disabled={true} className="btn btn-primary mt-10 w-full">Submit</button>
         </form >
     )
 }

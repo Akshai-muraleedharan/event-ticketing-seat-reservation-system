@@ -16,7 +16,7 @@ export const UserHomePage = () => {
                 subTitle="Book movies, events, and live shows with real-time seat selection."
                 primaryAction={{
                     label: " Book Tickets",
-                    to: "/organizer/create-event"
+                    to: "/user"
                 }}
                 secondaryAction={{
                     label: "My Bookings",

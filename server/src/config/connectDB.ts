@@ -4,7 +4,7 @@ import { getEnvVariable } from "../utils/getEnvVariable";
 
 
 export const connectDB = async (): Promise<void> => {
-    const mongourl: string = getEnvVariable("MONGO_URL") || "mongodb://localhost:27017/event-ticketing-management"
+    const mongourl: string = getEnvVariable("MONGO_URL")
 
     try {
 

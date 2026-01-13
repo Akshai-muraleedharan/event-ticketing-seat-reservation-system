@@ -9,11 +9,11 @@ export interface IBooking {
     user: Types.ObjectId
     event: Types.ObjectId
 
-    // 🎬 SEAT BOOKING
+
     seats?: Types.ObjectId[]
     seatCodes?: string[]
 
-    // 🎫 PASS / REGISTRATION
+
     attendeeName?: string
     attendeeEmail?: string
     attendeePhone?: string
