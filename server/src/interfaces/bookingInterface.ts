@@ -1,5 +1,5 @@
 import { Types } from "mongoose"
-import { BookingStatus, BookingType, PaymentMode, PaymentStatus } from "../enums"
+import { BookingStatus, BookingType, PaymentMode, PaymentStatus, UserRole } from "../enums"
 
 export interface IBooking {
     _id: Types.ObjectId
@@ -25,9 +25,17 @@ export interface IBooking {
     paymentStatus: PaymentStatus
 
     qrCodeUrl?: string
-
+    heldUntil: Date,
+    transactionId: string,
     bookedAt: Date
 
     createdAt: Date
     updatedAt: Date
+}
+
+export interface BookingAuthUser {
+
+    userId: Types.ObjectId,
+    role: UserRole
+
 }

@@ -1,5 +1,5 @@
 import mongoose from "mongoose"
-import { BookingStatus, PaymentMode, PaymentStatus } from "../enums"
+import { BookingStatus, BookingType, PaymentMode, PaymentStatus } from "../enums"
 import { IBooking } from "../interfaces"
 
 
@@ -8,7 +8,7 @@ const bookingSchema = new mongoose.Schema<IBooking>(
     {
         bookingType: {
             type: String,
-            enum: ["SEAT", "PASS"],
+            enum: Object.values(BookingType),
             required: true
         },
 
@@ -45,19 +45,20 @@ const bookingSchema = new mongoose.Schema<IBooking>(
         status: {
             type: String,
             enum: Object.values(BookingStatus),
-            default: BookingStatus.CONFIRMED
+            default: BookingStatus.HELD
         },
-
+        heldUntil: Date,
+        transactionId: String,
         paymentMode: {
             type: String,
             enum: Object.values(PaymentMode),
-            default: PaymentMode.MOCK
+            default: PaymentMode.PENDING
         },
 
         paymentStatus: {
             type: String,
             enum: Object.values(PaymentStatus),
-            default: PaymentStatus.SUCCESS
+            default: PaymentStatus.PENDING
         },
 
         qrCodeUrl: String,

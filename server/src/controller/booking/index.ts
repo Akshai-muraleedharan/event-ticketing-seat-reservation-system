@@ -1,0 +1,1 @@
+export { registrationController } from "./registration.controller"

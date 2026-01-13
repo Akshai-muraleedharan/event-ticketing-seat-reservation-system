@@ -1,21 +1,23 @@
 export enum BookingStatus {
-    HELD = "HELD",
-    CONFIRMED = "CONFIRMED",
-    CANCELLED = "CANCELLED"
+    HELD = "held",
+    CONFIRMED = "confirmed",
+    CANCELLED = "cancelled"
 }
 
 export enum BookingType {
-    SEAT = "SEAT",
-    PASS = "PASS"
+    TICKET = "ticket",
+    PASS = "pass"
 }
 
 export enum PaymentMode {
-    MOCK = "MOCK",
-    UPI = "UPI",
-    CARD = "CARD"
+    PENDING = "pending",
+    MOCK = "mock",
+    UPI = "upi",
+    CARD = "card"
 }
 
 export enum PaymentStatus {
-    SUCCESS = "SUCCESS",
-    FAILED = "FAILED"
+    PENDING = "pending",
+    SUCCESS = "success",
+    FAILED = "failed"
 }

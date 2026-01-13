@@ -11,3 +11,4 @@ export type EventSingleId = {
 }
 
 export type createSeatLayoutBody = z.infer<typeof seatLayoutSchema>["body"]
+
