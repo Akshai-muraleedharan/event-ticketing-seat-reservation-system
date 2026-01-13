@@ -17,4 +17,4 @@ export const registrationController = async (req: Request, res: Response, next: 
         next(error)
     }
 
-}
+} 
