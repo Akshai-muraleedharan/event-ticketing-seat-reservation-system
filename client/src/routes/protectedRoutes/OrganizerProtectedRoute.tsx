@@ -9,9 +9,9 @@ type AuthGaurdProps = {
 
 export const OrganizerProtectedRoute = ({ role }: AuthGaurdProps) => {
 
-    const { user, isAuthenticated } = useAuthStore((state) => state)
+    const { isHydrated, user, isAuthenticated } = useAuthStore((state) => state)
 
-
+    if (!isHydrated) return null
 
 
     if (!user && !isAuthenticated) {

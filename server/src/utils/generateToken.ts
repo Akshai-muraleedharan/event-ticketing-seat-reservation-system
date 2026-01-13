@@ -16,7 +16,7 @@ export const generateAccessToken = (payload: AccessTokenPayload) => {
 
     const accessTokenSecret = getEnvVariable("ACCESS_TOKEN_SECRET")
 
-    const accessToken = jwt.sign({ userId: payload.id, role: payload.role }, accessTokenSecret as Secret, { expiresIn: "15m" })
+    const accessToken = jwt.sign({ userId: payload.id, role: payload.role }, accessTokenSecret as Secret, { expiresIn: "1m" })
 
     return accessToken
 }

@@ -2,9 +2,13 @@
 import { Outlet } from 'react-router-dom'
 import { Footer } from '../components/footer/Footer'
 import { UserAuthHeader } from '../features'
+import { useEffect } from 'react'
 
 
 export const UserLayout = () => {
+
+
+
     return (
         <div className="bg-base-200 min-h-screen flex flex-col items-center justify-center">
             <UserAuthHeader />

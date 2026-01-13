@@ -65,29 +65,32 @@ axiosInstance.interceptors.response.use(
             }
 
             isRefreshing = true;
-
+            const logOut = useAuthStore.getState().logOut
             try {
                 const login = useAuthStore.getState().loginAuth
+
                 const res = await axios.post(
                     `${baseURL}/api/v1/auth/refresh`, {},
                     { withCredentials: true }
                 );
 
-                const accessToken = (res.data as { accessToken: string }).accessToken;
-                console.log(accessToken);
 
-                // login(res.data?.data, accessToken)
+                const newAccessToken = (res.data as { accessToken: string }).accessToken;
 
-                processQueue(null, accessToken);
+                login(res.data?.data, res?.data.accessToken);
+
+
+
+                processQueue(null, newAccessToken);
 
                 if (originalRequest.headers) {
-                    originalRequest.headers.Authorization = `Bearer ${accessToken}`;
+                    originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
                 }
 
                 return axiosInstance(originalRequest);
             } catch (refreshErr: any) {
                 processQueue(refreshErr, null);
-                // deleteLocalStorage("accessToken");
+                logOut()
                 return Promise.reject(refreshErr);
             } finally {
                 isRefreshing = false;

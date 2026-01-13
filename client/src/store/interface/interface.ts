@@ -24,10 +24,13 @@ export interface AuthState {
     user: AuthUser | null
     isAuthenticated: boolean
     accessToken: AuthUserToken | null
+    isHydrated: boolean
 
     loginAuth: (user: AuthUser, accessToken: AuthUserToken) => void
 
     logOut: () => void
+
+    setHydrated: () => void
 }
 
 export interface CommonState {
