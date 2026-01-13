@@ -1,6 +1,6 @@
 import React from 'react'
 import { SideBar } from '../components/sidebar/SideBar'
-import { DashBoardTopHeader } from '../components/headers/DashBoardTopHeader'
+import { DashBoardTopHeader } from '../features/auth/organiser/components/DashBoardTopHeader'
 import { Outlet } from 'react-router-dom'
 
 export const OrganizerDashboardLayout = () => {

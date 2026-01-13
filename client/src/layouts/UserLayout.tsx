@@ -1,7 +1,8 @@
 
 import { Outlet } from 'react-router-dom'
 import { Footer } from '../components/footer/Footer'
-import { UserAuthHeader } from '../components/headers/UserAuthHeader'
+import { UserAuthHeader } from '../features'
+
 
 export const UserLayout = () => {
     return (

@@ -1,5 +1,6 @@
 import { Link, useLocation } from 'react-router-dom'
-import { useAuthStore } from "../../store/useAuthStore"
+import { useAuthStore } from "../../../../store/useAuthStore"
+import { useOrganizerLogout } from '../hooks/useOrganizerLogout'
 
 export const OrganizerAuthHeader = () => {
 
@@ -8,11 +9,17 @@ export const OrganizerAuthHeader = () => {
     const splitFullName = organizerName?.split(" ")[0]
 
     const location = useLocation()
-
+    const { organizerLogout } = useOrganizerLogout()
 
     const organizerDashboardPath = location.pathname.startsWith("/organizer/dashboard")
 
+    const logout = useAuthStore((set) => set.logOut)
 
+
+    const handleLogOut = async () => {
+        await organizerLogout()
+        logout()
+    }
 
 
     return (
@@ -22,6 +29,7 @@ export const OrganizerAuthHeader = () => {
             <div className='flex gap-4'>
                 {!organizerDashboardPath && <Link to={"/dashboard"}>Dashboard</Link>}
                 {organizerName && <p>Welcome, {splitFullName}</p>}
+                <button onClick={handleLogOut} className='hover:text-blue-500'>Logout</button>
             </div>
         </div>
     )

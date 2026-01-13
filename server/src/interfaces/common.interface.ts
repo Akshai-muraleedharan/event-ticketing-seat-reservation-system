@@ -26,6 +26,7 @@ export interface AccessTokenPayload {
 
 export interface RefreshTokenPayload {
     id: Types.ObjectId,
+    role: string
 }
 
 export interface GetProfilePayload {

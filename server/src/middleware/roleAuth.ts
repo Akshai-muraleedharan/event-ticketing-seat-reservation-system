@@ -8,7 +8,13 @@ export const roleAuth = (...roles: UserRole[]) => {
         const user = res.locals.user as {
             userId: Types.ObjectId,
             role: UserRole
+        } || res.locals.authUser as {
+            userId: Types.ObjectId,
+            role: UserRole
         }
+
+
+
 
         if (!user) {
             throw new AppError("Unauthorized", 401)

@@ -7,6 +7,7 @@ import { sendMail } from "../../utils/sendEmail";
 import { generateAccessToken, generateOtpToken, generateRefreshToken } from "../../utils/generateToken";
 import { OtpRequestBody, UserPayload } from "../../interfaces/index";
 import { UserRole } from "../../enums";
+import { Types } from "mongoose";
 
 export class authService {
     static async registerService(payload: CreateUserBody, role: UserRole) {
@@ -160,7 +161,7 @@ export class authService {
         const jwtSignData = { id: user._id, role: role }
 
         const accessToken = generateAccessToken(jwtSignData)
-        const refreshToken = generateRefreshToken({ id: user._id })
+        const refreshToken = generateRefreshToken(jwtSignData)
 
         const userObj = user.toObject()
         const { password: pass, emailverified: verify, ...rest } = userObj
@@ -171,4 +172,30 @@ export class authService {
         return { accessToken, refreshToken, rest }
     }
 
+    static async newAccessTokenGenerate(user: { userId: Types.ObjectId, role: UserRole }) {
+
+        const findUser = await User.findOne({ _id: user.userId, roles: user.role })
+
+        if (!findUser) {
+            throw new AppError(" Account not found", 404)
+        }
+
+        if (!findUser?.emailverified) {
+            throw new AppError("Email not verified. Please verify OTP.", 400)
+        }
+
+        const jwtSignData = { id: findUser._id, role: findUser.roles }
+
+        const accessToken = generateAccessToken(jwtSignData)
+
+        const userObj = findUser.toObject()
+
+        const { password: pass, emailverified: verify, ...rest } = userObj
+
+        return { accessToken, rest }
+    }
+
+
+
 }
+

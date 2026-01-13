@@ -3,7 +3,7 @@ import type { Router } from "express"
 import { zodValidationMiddleware } from "../../../middleware/zodMiddleware";
 import { verifyOtpToken } from "../../../middleware/otpTokenVerify";
 import { createSchema, loginSchema, otpSchema } from "../../../schemas/index";
-import { organizerLogin, organizerOtpVerification, organizerProfile, organizerRegister } from "../../../controller/organizer/index";
+import { logOutOrganizer, organizerLogin, organizerOtpVerification, organizerProfile, organizerRegister } from "../../../controller/organizer/index";
 import { userTokenVerify } from "../../../middleware/userTokenVerify";
 import { roleAuth } from "../../../middleware/roleAuth";
 import { UserRole } from "../../../enums";
@@ -16,3 +16,4 @@ oragnizerRouter.post('/register', zodValidationMiddleware(createSchema), organiz
 oragnizerRouter.post('/verify-otp', verifyOtpToken, zodValidationMiddleware(otpSchema), organizerOtpVerification)
 oragnizerRouter.post('/login', zodValidationMiddleware(loginSchema), organizerLogin)
 oragnizerRouter.get('/', userTokenVerify, roleAuth(UserRole.ORGANIZER), organizerProfile)
+oragnizerRouter.post('/logout', userTokenVerify, roleAuth(UserRole.ORGANIZER), logOutOrganizer)
