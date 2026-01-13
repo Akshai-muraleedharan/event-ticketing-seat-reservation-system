@@ -12,7 +12,6 @@ export const registrationController = async (req: Request, res: Response, next: 
 
         const response = await bookingService.registration(payload, eventId, user)
 
-        console.log(response);
 
     } catch (error: any) {
         next(error)

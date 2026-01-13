@@ -10,7 +10,6 @@ export const EventRegistrationForm = () => {
 
     const onSubmit = (data: BookingFormData) => {
 
-        console.log(data);
 
         handleOpenPayment(true)
     }

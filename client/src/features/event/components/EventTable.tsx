@@ -10,7 +10,6 @@ export const EventTable = () => {
 
     const params = useParams()
 
-    console.log(params);
 
 
     const tableRow = events.map((event, index) => {

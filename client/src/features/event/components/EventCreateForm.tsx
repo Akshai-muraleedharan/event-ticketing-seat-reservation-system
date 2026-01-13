@@ -36,7 +36,7 @@ export const EventCreateForm = () => {
 
     const bookingType = watch("bookingType")
 
-    console.log(isTicket);
+
 
     useEffect(() => {
         if (!bookingType) return

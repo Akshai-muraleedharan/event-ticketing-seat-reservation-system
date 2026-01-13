@@ -12,7 +12,6 @@ export const createEventSeat = async (req: Request, res: Response, next: NextFun
 
     } catch (error) {
 
-        console.log(error)
         next(error)
     }
 }

@@ -8,7 +8,7 @@ import { UserRole } from "../../enums/index"
 export const organizerRegister = async (req: Request<{}, {}, {}>, res: Response<{}>, next: NextFunction) => {
 
     const body = res.locals.validated.body
-    console.log(body);
+
 
     if (!body) {
         throw new AppError("Invalid request body", 400)
@@ -32,7 +32,7 @@ export const organizerRegister = async (req: Request<{}, {}, {}>, res: Response<
 export const organizerOtpVerification = async (req: Request<{}, {}, {}>, res: Response, next: NextFunction) => {
 
     try {
-        console.log("controller", res.locals.user_id_otp);
+
 
         const payload: OtpRequestBody = { user_id_otp: res.locals.user_id_otp, body: res.locals.validated.body }
 

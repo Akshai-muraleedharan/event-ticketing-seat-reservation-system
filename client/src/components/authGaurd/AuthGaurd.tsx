@@ -28,7 +28,7 @@ export const AuthGaurd = ({ role }: AuthGaurdProps) => {
         return <Navigate to={"/403"} replace />
     }
 
-    console.log(user, role)
+
 
     return <Outlet />
 }
